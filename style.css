@@ -138,6 +138,10 @@ body{
 
 /* Botoes */
 
+a.btn{
+    text-decoration: none;
+}
+
 .btn{
     display: inline-flex;
     align-items: center;
@@ -202,4 +206,73 @@ body{
 
 .link-secundario:hover{
     color: var(--grama-hover);
+}
+
+/* historico.html e ranking.html */
+
+.forms-card--largo{
+    max-width: 820px;
+}
+
+.tabela-wrap{
+    width: 100%;
+    overflow-x: auto;
+}
+
+.ranking{
+    width: 100%;
+    margin-bottom: 22px;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: left;
+}
+
+.ranking caption{
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: var(--terra-borda);
+}
+
+.ranking th{
+    padding: 10px 12px;
+    font-family: var(--fonte-titulo);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--creme-texto);
+    background: var(--terra-ui);
+}
+
+.ranking th:first-child{
+    border-radius: var(--raio-campo) 0 0 0;
+}
+
+.ranking th:last-child{
+    border-radius: 0 var(--raio-campo) 0 0;
+}
+
+.ranking td{
+    padding: 12px;
+    color: var(--terra-fundo);
+    border-bottom: 2px solid var(--creme-texto2);
+}
+
+.ranking tbody tr:last-child td{
+    border-bottom: none;
+}
+
+.col-pos{
+    width: 52px;
+    font-family: var(--fonte-titulo);
+    font-weight: 600;
+    color: var(--terra-borda);
+}
+
+.col-acertos{
+    text-align: right;
+    font-weight: 700;
+}
+
+/* Podio do ranking */
+.ranking tbody tr:nth-child(-n+3) .col-pos{
+    color: var(--sol-hover);
 }
