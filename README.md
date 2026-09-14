@@ -11,7 +11,7 @@ Link para página de cadastro no sistema
 Tela cadastro (Já feita, falta configurar o forms com o java e banco)
 Forms nome completo, data de nascimento, CPF, telefone, e-mail, username, senha
 
-Tela menu inicial (Feita Parcialmente, falta configurar os botões para redirecionamento)
+Tela menu inicial (Feito)
 Botão tela iniciar jogo
 link desconectar e retornar à página de login
 link ranking global
@@ -30,10 +30,10 @@ Tamanho do tabuleiro, total de toupeiras acertadas, pontuação final, nível em
 Iniciar nova partida
 Retornar ao menu
 
-Tela de ranking global
+Tela de ranking global (Feito)
 Listagem de usernames e dados da partida para os melhores jogadores.
 Opção do usuário editar suas informações pessoais (Data de nasci, CPF e username não podem ser alterados)
 
 
-Tela de histórico (limitado ao usuário)
+Tela de histórico (limitado ao usuário) (Feito)
 Deve conter as informações registradas em cada partida do usuário (nome, dimensões, modalidade, pontuação e nível atingindo)
