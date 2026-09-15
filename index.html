@@ -1,42 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
-    <head>
-        <meta charset="UTF-8">
-        <title>Whack-a-Mole Login</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Whack-a-Mole Login</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
 
-    <body>
-        <header class="login-screen">
-            <div class="login-screen-art">
-                <img src="img/thumb-mole.jpg" alt="thumb-art">
-            </div>
+  <body>
+    <header class="login-screen">
+      <div class="login-screen-art">
+        <img src="img/thumb-mole.jpg" alt="thumb-art" />
+      </div>
 
-            <div class="login-screen-title">
-                <h1>Whack-a-Mole</h1>
-            </div>
-        </header>
+      <div class="login-screen-title">
+        <h1>Whack-a-Mole</h1>
+      </div>
+    </header>
 
-        <main class="forms">
-            <section class="forms-card">
-                <form id="login-form" novalidate>
-                    <div class="field">
-                        <label for="user">Usuário</label>
-                        <input id="user" type="text" required>
-                    </div>
+    <main class="forms">
+      <section class="forms-card login-card">
+        <form id="login-form" novalidate>
+          <div class="field">
+            <label for="user">Usuário</label>
+            <input id="user" type="text" required />
+          </div>
 
-                    <div class="field">
-                        <label for="password">Senha</label>
-                        <input id="password" type="password" required>
-                    </div>
+          <div class="field">
+            <label for="password">Senha</label>
+            <input id="password" type="password" required />
+          </div>
 
-                    <p id="form-error" role="alert" hidden></p> <!-- Exibir o alerta mediante validacao Java futura --> 
+          <p id="form-error" role="alert" hidden></p>
+          <!-- Exibir o alerta mediante validacao Java futura -->
 
-                    <a href="menu.html" class="btn btn--primary">Acessar</a>                    
-                </form>
+          <a href="menu.html" class="btn btn--primary">Acessar</a>
+        </form>
 
-                <a href="cadastro.html" class="link-secundario">Criar conta</a>
-            </section>
-        </main>
-    </body>
+        <a href="cadastro.html" class="link-secundario">Criar conta</a>
+      </section>
+    </main>
+  </body>
 </html>

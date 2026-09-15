@@ -1,94 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
-    <head>
-        <meta charset="UTF-8">
-        <title>Whack-a-Mole Historico</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Whack-a-Mole Historico</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/historico.css" />
+  </head>
 
-    <body>
-        <header class="login-screen">
-            <div class="login-screen-art">
-                <img src="img/thumb-mole.jpg" alt="thumb-art">
-            </div>
+  <body>
+    <header class="login-screen">
+      <div class="login-screen-art">
+        <img src="img/thumb-mole.jpg" alt="thumb-art" />
+      </div>
 
-            <div class="login-screen-title">
-                <h1>Registros de Confronto!</h1>
-            </div>
-        </header>
+      <div class="login-screen-title">
+        <h1>Registros de Confronto!</h1>
+      </div>
+    </header>
 
-        <main class="forms">
-            <section class="forms-card forms-card--largo">
-                    <div class="tabela-wrap">
-                        <table class="ranking">
-                        <caption>Todas as partidas disputadas por ZeDaMarreta</caption>
- 
-                        <thead>
-                            <tr>
-                                <th scope="col">Jogador</th>
-                                <th scope="col">Tabuleiro</th>
-                                <th scope="col">Modalidade</th>
-                                <th scope="col" class="col-num">Pontuação</th>
-                                <th scope="col" class="col-num">Nível</th>
-                                <th scope="col">Data / Hora</th>
-                            </tr>
-                        </thead>
- 
-                        <tbody>
-                            <tr>
-                                <td>ZeDaMarreta</td>
-                                <td>5 x 5</td>
-                                <td>Clássico</td>
-                                <td class="col-num">4.820</td>
-                                <td class="col-num">12</td>
-                                <td><time datetime="2026-09-13T21:34">13/09/2026 21:34</time></td>
-                            </tr>
-                            <tr>
-                                <td>ZeDaMarreta</td>
-                                <td>4 x 4</td>
-                                <td>Explosivo</td>
-                                <td class="col-num">3.150</td>
-                                <td class="col-num">9</td>
-                                <td><time datetime="2026-09-12T19:02">12/09/2026 19:02</time></td>
-                            </tr>
-                            <tr>
-                                <td>ZeDaMarreta</td>
-                                <td>3 x 3</td>
-                                <td>Clássico</td>
-                                <td class="col-num">1.940</td>
-                                <td class="col-num">6</td>
-                                <td><time datetime="2026-09-10T22:15">10/09/2026 22:15</time></td>
-                            </tr>
-                            <tr>
-                                <td>ZeDaMarreta</td>
-                                <td>5 x 5</td>
-                                <td>Clássico</td>
-                                <td class="col-num">2.780</td>
-                                <td class="col-num">8</td>
-                                <td><time datetime="2026-09-08T18:47">08/09/2026 18:47</time></td>
-                            </tr>
-                            <tr>
-                                <td>ZeDaMarreta</td>
-                                <td>4 x 4</td>
-                                <td>Explosivo</td>
-                                <td class="col-num">3.605</td>
-                                <td class="col-num">10</td>
-                                <td><time datetime="2026-09-05T20:23">05/09/2026 20:23</time></td>
-                            </tr>
-                            <tr>
-                                <td>ZeDaMarreta</td>
-                                <td>3 x 3</td>
-                                <td>Clássico</td>
-                                <td class="col-num">1.120</td>
-                                <td class="col-num">4</td>
-                                <td><time datetime="2026-09-02T21:58">02/09/2026 21:58</time></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </div>
+    <main class="forms">
+      <section class="forms-card forms-card--largo historico-card">
+        <div class="tabela-wrap">
+          <table class="ranking">
+            <caption>
+              Todas as partidas disputadas por ZeDaMarreta
+            </caption>
 
-                <a href="menu.html" class="link-secundario">Voltar ao Menu</a>
-            </section>
-        </main>
-    </body>
+            <thead>
+              <tr>
+                <th scope="col">Jogador</th>
+                <th scope="col">Tabuleiro</th>
+                <th scope="col">Modalidade</th>
+                <th scope="col" class="col-num">Pontuação</th>
+                <th scope="col" class="col-num">Nível</th>
+                <th scope="col">Data / Hora</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>ZeDaMarreta</td>
+                <td>5 x 5</td>
+                <td>Clássico</td>
+                <td class="col-num">4.820</td>
+                <td class="col-num">12</td>
+                <td>
+                  <time datetime="2026-09-13T21:34">13/09/2026 21:34</time>
+                </td>
+              </tr>
+              <tr>
+                <td>ZeDaMarreta</td>
+                <td>4 x 4</td>
+                <td>Explosivo</td>
+                <td class="col-num">3.150</td>
+                <td class="col-num">9</td>
+                <td>
+                  <time datetime="2026-09-12T19:02">12/09/2026 19:02</time>
+                </td>
+              </tr>
+              <tr>
+                <td>ZeDaMarreta</td>
+                <td>3 x 3</td>
+                <td>Clássico</td>
+                <td class="col-num">1.940</td>
+                <td class="col-num">6</td>
+                <td>
+                  <time datetime="2026-09-10T22:15">10/09/2026 22:15</time>
+                </td>
+              </tr>
+              <tr>
+                <td>ZeDaMarreta</td>
+                <td>5 x 5</td>
+                <td>Clássico</td>
+                <td class="col-num">2.780</td>
+                <td class="col-num">8</td>
+                <td>
+                  <time datetime="2026-09-08T18:47">08/09/2026 18:47</time>
+                </td>
+              </tr>
+              <tr>
+                <td>ZeDaMarreta</td>
+                <td>4 x 4</td>
+                <td>Explosivo</td>
+                <td class="col-num">3.605</td>
+                <td class="col-num">10</td>
+                <td>
+                  <time datetime="2026-09-05T20:23">05/09/2026 20:23</time>
+                </td>
+              </tr>
+              <tr>
+                <td>ZeDaMarreta</td>
+                <td>3 x 3</td>
+                <td>Clássico</td>
+                <td class="col-num">1.120</td>
+                <td class="col-num">4</td>
+                <td>
+                  <time datetime="2026-09-02T21:58">02/09/2026 21:58</time>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <a href="menu.html" class="link-secundario">Voltar ao Menu</a>
+      </section>
+    </main>
+  </body>
 </html>
