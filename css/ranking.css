@@ -1,0 +1,5 @@
+/* Ajustes exclusivos do ranking */
+
+.ranking-card .ranking tbody tr:nth-child(-n + 3) .col-pos {
+  color: var(--sol-hover);
+}

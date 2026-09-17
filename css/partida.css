@@ -1,0 +1,250 @@
+.partida-card {
+  max-width: 720px;
+}
+
+/* Painel de hud */
+
+.hud {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.hud-item {
+  padding: 10px 8px;
+  border-radius: var(--raio-campo);
+  background: var(--terra-ui);
+}
+
+.hud-rotulo {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--creme-texto2);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.hud-valor {
+  display: block;
+  color: var(--creme-texto);
+  font-family: var(--fonte-titulo);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.hud-valor--destaque {
+  color: var(--sol-pontuacao);
+}
+
+/* Barra de progresso */
+
+.nivel {
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  border: 2px solid var(--creme-texto2);
+  border-radius: var(--raio-campo);
+  text-align: left;
+}
+
+.nivel-topo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  color: var(--terra-borda);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.nivel-percentual {
+  color: var(--terra-fundo);
+  font-family: var(--fonte-titulo);
+  font-size: 18px;
+}
+
+.barra-wrap {
+  position: relative;
+}
+
+.barra {
+  display: block;
+  width: 100%;
+  height: 18px;
+  border: none;
+  border-radius: 9px;
+  background: var(--creme-texto2);
+  color: var(--grama-acao);
+}
+
+.barra::-webkit-progress-bar {
+  border-radius: 9px;
+  background: var(--creme-texto2);
+}
+
+.barra::-webkit-progress-value {
+  border-radius: 9px;
+  background: var(--grama-acao);
+}
+
+.barra::-moz-progress-bar {
+  border-radius: 9px;
+  background: var(--grama-acao);
+}
+
+/* Marcação da meta a ser atingida na barra */
+.barra-meta {
+  position: absolute;
+  top: -3px;
+  width: 3px;
+  height: 24px;
+  border-radius: 2px;
+  background: var(--bomba-erro);
+}
+
+.barra-meta--90 {
+  left: 90%;
+}
+
+.nivel-meta {
+  margin: 8px 0 0;
+  color: var(--terra-borda);
+  font-size: 12px;
+}
+
+/* Tabuleiro, futuramente alterar a definição da tabela no js, data-colunas define o tamanho da colunas */
+
+.tabuleiro-wrap {
+  margin-bottom: 20px;
+}
+
+.tabuleiro {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border: 4px solid var(--terra-borda);
+  border-radius: var(--raio-card);
+  background: var(--terra-ui);
+}
+
+.tabuleiro[data-colunas="1"] {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.tabuleiro[data-colunas="2"] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.tabuleiro[data-colunas="3"] {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.tabuleiro[data-colunas="4"] {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.tabuleiro[data-colunas="5"] {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+.tabuleiro[data-colunas="6"] {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+.tabuleiro[data-colunas="7"] {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+.tabuleiro[data-colunas="8"] {
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+
+.tabuleiro-legenda {
+  margin: 10px 0 0;
+  color: var(--terra-borda);
+  font-size: 12px;
+}
+
+/* Buracos, um botão por buraco, aparencia é definida pelo atributo data-estado, que o js ira trocar */
+
+.buraco {
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  border: none;
+  border-radius: var(--raio-campo);
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  image-rendering: pixelated;
+  transition: transform 0.08s ease;
+}
+
+/* buraco vazio */
+.buraco[data-estado="vazio"] {
+  background-image: url("../img/buraco-idle.png");
+}
+
+/* toupeira surgindo, primeiro quadro da animacao */
+.buraco[data-estado="meio"] {
+  background-image: url("../img/toupeira-frame1.png");
+}
+
+/* toupeira exposta, segundo quadro, e é o alvo clicavel */
+.buraco[data-estado="toupeira"] {
+  background-image: url("../img/toupeira-frame2.png");
+}
+
+/* toupeira apos ser clicada, possivel terceiro quadro */
+.buraco[data-estado="acerto"] {
+  background-image: url("../img/toupeira-acerto.png");
+}
+
+/* bomba exposta, é alvo clicavel */
+.buraco[data-estado="bomba"] {
+  background-image: url("../img/bomba-idle.png");
+}
+
+/* bomba após ser clicada */
+.buraco[data-estado="explosao"] {
+  background-image: url("../img/bomba-acerto.png");
+}
+
+.buraco:active {
+  transform: scale(0.94);
+}
+
+.buraco:focus-visible {
+  outline: 3px solid var(--sol-pontuacao);
+  outline-offset: 2px;
+}
+
+/* Evitar que o btn de desistir quebre o limite de visualização em telas menores*/
+
+.partida-acoes {
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* Configuração para telas menores*/
+
+@media (max-width: 560px) {
+  .hud {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hud-valor {
+    font-size: 17px;
+  }
+
+  .tabuleiro {
+    gap: 5px;
+    padding: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .buraco {
+    transition: none;
+  }
+
+  .buraco:active {
+    transform: none;
+  }
+}

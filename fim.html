@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Whack-a-Mole | Fim de partida</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/fim.css" />
+  </head>
+
+  <body>
+    <header class="login-screen">
+      <div class="login-screen-art art--jogo">
+        <img
+          src="img/emblema-jogo.jpeg"
+          alt="Marreta erguida sobre uma toca, prestes a descer"
+        />
+      </div>
+
+      <div class="login-screen-title">
+        <h1>Fim de partida!</h1>
+      </div>
+    </header>
+
+    <main class="forms">
+      <section class="forms-card fim-card">
+        <h2 class="sr-apenas">Resumo da partida encerrada</h2>
+
+        <p class="fim-intro">
+          Você não atingiu a meta de acertos do nível. A partida foi encerrada e
+          o resultado abaixo foi registrado no seu histórico.
+        </p>
+
+        <dl class="resumo">
+          <div class="resumo-linha">
+            <dt>Modalidade</dt>
+            <dd id="fim-modalidade">Explosiva</dd>
+          </div>
+
+          <div class="resumo-linha">
+            <dt>Tamanho do tabuleiro</dt>
+            <dd id="fim-tabuleiro">4 &times; 4 (16 buracos)</dd>
+          </div>
+
+          <div class="resumo-linha">
+            <dt>Toupeiras acertadas</dt>
+            <dd id="fim-acertos">12</dd>
+          </div>
+
+          <div class="resumo-linha">
+            <dt>Nível atingido</dt>
+            <dd id="fim-nivel">3</dd>
+          </div>
+
+          <div class="resumo-linha resumo-linha--destaque">
+            <dt>Pontuação final</dt>
+            <dd id="fim-pontuacao">3.150</dd>
+          </div>
+        </dl>
+
+        <div class="field">
+          <a href="jogo.html" class="btn btn--primary">Iniciar nova partida</a>
+        </div>
+
+        <div class="field">
+          <a href="menu.html" class="btn btn--secondary">Voltar ao menu</a>
+        </div>
+
+        <a href="historico.html" class="link-secundario">Ver meu histórico</a>
+      </section>
+    </main>
+  </body>
+</html>
