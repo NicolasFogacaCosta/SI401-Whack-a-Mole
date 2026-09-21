@@ -1,0 +1,102 @@
+/* Ajustes exclusivos da selecao de partida */
+
+.game-config-card {
+  max-width: 520px;
+}
+
+.config-intro {
+  margin: 0 0 22px;
+  color: var(--terra-borda);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.config-fieldset {
+  margin: 0 0 20px;
+  padding: 16px;
+  border: 2px solid var(--creme-texto2);
+  border-radius: var(--raio-campo);
+  text-align: left;
+}
+
+.config-fieldset legend {
+  padding: 0 8px;
+  color: var(--terra-borda);
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+}
+
+.config-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.config-grid .field {
+  margin-bottom: 0;
+}
+
+.config-help {
+  margin: 12px 0 0;
+  color: var(--terra-borda);
+  font-size: 12px;
+}
+
+.mode-options {
+  display: grid;
+  gap: 10px;
+}
+
+.mode-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  border: 2px solid var(--creme-texto2);
+  border-radius: var(--raio-campo);
+  background: #fff;
+  color: var(--terra-fundo);
+  cursor: pointer;
+}
+
+.mode-option:has(input:checked) {
+  border-color: var(--grama-acao);
+  background: #f3fbef;
+}
+
+.mode-option input {
+  margin-top: 3px;
+  accent-color: var(--grama-acao);
+}
+
+.mode-option span {
+  display: grid;
+  gap: 3px;
+}
+
+.mode-option strong {
+  font-family: var(--fonte-titulo);
+}
+
+.mode-option small {
+  color: var(--terra-borda);
+  font-size: 12px;
+}
+
+.form-message {
+  margin: 0 0 16px;
+  padding: 10px 12px;
+  border: 2px solid var(--bomba-erro);
+  border-radius: var(--raio-campo);
+  background: #fcebeb;
+  color: var(--bomba-hover);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: left;
+}
+
+@media (max-width: 420px) {
+  .config-grid {
+    grid-template-columns: 1fr;
+  }
+}

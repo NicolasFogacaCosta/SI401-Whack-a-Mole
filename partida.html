@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whack-a-Mole | Partida em andamento</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/partida.css">
+    <link rel="icon" href="img/toupeira-favicon.ico">
+  </head>
+
+  <body>
+    <header class="login-screen">
+      <div class="login-screen-art art--jogo">
+        <img src="img/emblema-jogo.jpeg" alt="Marreta erguida sobre uma toca, prestes a descer">
+      </div>
+
+      <div class="login-screen-title">
+        <h1>Partida em andamento</h1>
+      </div>
+    </header>
+
+    <main class="forms">
+      <div class="forms-card forms-card--largo partida-card">
+        <!--Visualização estática-->
+        <div class="hud" role="status">
+          <div class="hud-item">
+            <span class="hud-rotulo">Modalidade</span>
+            <strong class="hud-valor" id="hud-modalidade">Explosiva</strong>
+          </div>
+
+          <div class="hud-item">
+            <span class="hud-rotulo">Tempo restante</span>
+            <time class="hud-valor hud-valor--destaque" id="hud-tempo" datetime="PT14S">00:14</time>
+          </div>
+
+          <div class="hud-item">
+            <span class="hud-rotulo">Nível</span>
+            <strong class="hud-valor" id="hud-nivel">3</strong>
+          </div>
+
+          <div class="hud-item">
+            <span class="hud-rotulo">Toupeiras acertadas</span>
+            <output class="hud-valor" id="hud-acertos">12</output>
+          </div>
+        </div>
+
+        <div class="nivel">
+          <div class="nivel-topo">
+            <span id="nivel-titulo">Acertos no nível atual</span>
+            <output class="nivel-percentual" id="hud-percentual">70%</output>
+          </div>
+
+          <div class="barra-wrap">
+            <progress class="barra" id="hud-barra" value="70" max="100" aria-labelledby="nivel-titulo">70%</progress>
+            <span class="barra-meta barra-meta--90"></span>
+          </div>
+
+          <p class="nivel-meta">
+            Meta para avançar de nível: <strong>90%</strong> de acertos dentro do tempo do nível.
+          </p>
+        </div>
+
+        <div class="tabuleiro-wrap">
+          <div class="tabuleiro" id="tabuleiro" data-colunas="4">
+            <button type="button" class="buraco" data-estado="vazio" aria-label="Buraco 1, vazio"></button>
+            <button type="button" class="buraco" data-estado="toupeira" aria-label="Buraco 2, toupeira à vista"></button>
+            <button type="button" class="buraco" data-estado="vazio" aria-label="Buraco 3, vazio"></button>
+            <button type="button" class="buraco" data-estado="vazio" aria-label="Buraco 4, vazio"></button>
+
+            <button type="button" class="buraco" data-estado="bomba" aria-label="Buraco 5, bomba"></button>
+            <button type="button" class="buraco" data-estado="vazio" aria-label="Buraco 6, vazio"></button>
+            <button type="button" class="buraco" data-estado="vazio" aria-label="Buraco 7, vazio"></button>
+            <button type="button" class="buraco" data-estado="meio" aria-label="Buraco 8, toupeira surgindo"></button>
+
+            <button type="button" class="buraco" data-estado="vazio" aria-label="Buraco 9, vazio"></button>
+            <button type="button" class="buraco" data-estado="vazio" aria-label="Buraco 10, vazio"></button>
+            <button type="button" class="buraco" data-estado="acerto" aria-label="Buraco 11, toupeira acertada"></button>
+            <button type="button" class="buraco" data-estado="vazio" aria-label="Buraco 12, vazio"></button>
+
+            <button type="button" class="buraco" data-estado="vazio" aria-label="Buraco 13, vazio"></button>
+            <button type="button" class="buraco" data-estado="toupeira" aria-label="Buraco 14, toupeira à vista"></button>
+            <button type="button" class="buraco" data-estado="vazio" aria-label="Buraco 15, vazio"></button>
+            <button type="button" class="buraco" data-estado="vazio" aria-label="Buraco 16, vazio"></button>
+          </div>
+
+          <p class="tabuleiro-legenda">
+            Tabuleiro <strong id="hud-dimensoes">4 &times; 4</strong> &mdash; 16
+            buracos
+          </p>
+        </div>
+
+        <div class="partida-acoes">
+          <a href="jogo.html" class="btn btn--tertiary">Desistir da partida</a>
+        </div>
+
+        <!--Link de acesso ao fim da partida-->
+        <a href="fim.html" class="link-secundario">
+          Ver tela de fim de partida (navegação da demonstração)
+        </a>
+      </div>
+    </main>
+  </body>
+</html>

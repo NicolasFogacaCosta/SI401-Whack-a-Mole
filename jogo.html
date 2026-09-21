@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whack-a-Mole | Nova partida</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/jogo.css">
+    <link rel="icon" href="img/toupeira-favicon.ico">
+  </head>
+
+  <body>
+    <header class="login-screen">
+      <div class="login-screen-art">
+        <img src="img/emblema-jogo.jpeg" alt="Ilustração de uma toupeira">
+      </div>
+
+      <div class="login-screen-title">
+        <h1>Nova partida</h1>
+      </div>
+    </header>
+
+    <main class="forms">
+      <div class="forms-card game-config-card">
+        <p class="config-intro">
+          Escolha o tamanho do tabuleiro e a modalidade do desafio.
+        </p>
+
+        <form id="configuracao-form" action="partida.html" method="get">
+          <fieldset class="config-fieldset">
+            <legend>Dimensões do tabuleiro</legend>
+
+            <div class="config-grid">
+              <div class="field">
+                <label for="linhas">Linhas</label>
+                <input id="linhas" name="linhas" type="number" min="1" max="64" value="4" required>
+              </div>
+
+              <div class="field">
+                <label for="colunas">Colunas</label>
+                <input id="colunas" name="colunas" type="number" min="1" max="64" value="4" required>
+              </div>
+            </div>
+
+            <p class="config-help">
+              O tabuleiro deve ter entre 4 e 64 buracos no total.
+            </p>
+          </fieldset>
+
+          <fieldset class="config-fieldset">
+            <legend>Modalidade</legend>
+
+            <div class="mode-options">
+              <label class="mode-option">
+                <input type="radio" name="modo" value="classico" required>
+                <span>
+                  <strong>Clássica</strong>
+                  <small>Acerte apenas as toupeiras.</small>
+                </span>
+              </label>
+
+              <label class="mode-option">
+                <input type="radio" name="modo" value="explosivo">
+                <span>
+                  <strong>Explosiva</strong>
+                  <small>Acerte toupeiras e evite as bombas.</small>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <p id="configuracao-erro" class="form-message" role="alert" hidden></p>
+
+          <button type="submit" class="btn btn--primary">
+            Começar partida
+          </button>
+        </form>
+
+        <a href="menu.html" class="link-secundario">Voltar ao menu</a>
+      </div>
+    </main>
+  </body>
+</html>
