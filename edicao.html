@@ -22,10 +22,25 @@
 
     <main class="forms">
       <div class="forms-card edicao-card">
-        <form id="cadastro-form" novalidate>
+        <form id="edicao-form" novalidate>
           <div class="field">
             <label for="full_name">Nome Completo</label>
             <input id="full_name" type="text" required>
+          </div>
+
+          <div class="field">
+            <label for="birthday">Data de Nascimento</label>
+            <input id="birthday" type="date" value="2000-01-15" readonly>
+          </div>
+
+          <div class="field">
+            <label for="cpf">CPF</label>
+            <input id="cpf" type="text" value="000.000.000-00" readonly>
+          </div>
+
+          <div class="field">
+            <label for="user">Usuário</label>
+            <input id="user" type="text" value="ZeDaMarreta" readonly>
           </div>
 
           <div class="field">
@@ -35,7 +50,7 @@
 
           <div class="field">
             <label for="email">E-mail</label>
-            <input id="email" type="text" required>
+            <input id="email" type="email" required>
           </div>
 
           <div class="field">
