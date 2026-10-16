@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whack-a-Mole | Login</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="icon" href="assets/img/toupeira-favicon.ico">
+  </head>
+
+  <body>
+    <header class="login-screen">
+      <div class="login-screen-art">
+        <img src="assets/img/emblema-login.jpeg" alt="thumb-art">
+      </div>
+
+      <div class="login-screen-title">
+        <h1>Whack-a-Mole</h1>
+      </div>
+    </header>
+
+    <main class="forms">
+      <div class="forms-card login-card">
+        <form id="login-form" action="../app/view/menu.html" novalidate>
+          <div class="field">
+            <label for="user">Usuário</label>
+            <input id="user" type="text" required>
+          </div>
+
+          <div class="field">
+            <label for="password">Senha</label>
+            <input id="password" type="password" required>
+          </div>
+
+          <p id="form-error" role="alert" hidden></p>
+          <!-- Exibir o alerta mediante validacao Java futura -->
+
+          <button type="submit" class="btn btn--primary">Acessar</button>
+        </form>
+
+        <a href="../app/view/cadastro.html" class="link-secundario">Criar conta</a>
+      </div>
+    </main>
+  </body>
+</html>

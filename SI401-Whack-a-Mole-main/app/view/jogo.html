@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whack-a-Mole | Nova partida</title>
+    <link rel="stylesheet" href="../../public/assets/css/style.css">
+    <link rel="stylesheet" href="../../public/assets/css/jogo.css">
+    <link rel="icon" href="../../public/assets/img/toupeira-favicon.ico">
+  </head>
+
+  <body class="tela-jogo">
+    <header class="login-screen">
+      <div class="login-screen-art">
+        <img src="../../public/assets/img/emblema-jogo.jpeg" alt="Ilustração de uma toupeira">
+      </div>
+
+      <div class="login-screen-title">
+        <h1>Nova partida</h1>
+      </div>
+    </header>
+
+    <main class="forms">
+      <div class="forms-card game-config-card">
+        <form id="configuracao-form" action="partida.html" method="get">
+          <fieldset class="config-bloco">
+            <legend>Modalidade</legend>
+
+            <div class="opcoes-modo">
+              <label class="opcao">
+                <input type="radio" name="modo" value="classico" checked>
+                <span class="opcao-conteudo">
+                  <strong>Clássica</strong>
+                  <small>Só toupeiras. Acerte o máximo que conseguir.</small>
+                </span>
+              </label>
+
+              <label class="opcao">
+                <input type="radio" name="modo" value="explosivo">
+                <span class="opcao-conteudo">
+                  <strong>Explosiva</strong>
+                  <small>Toupeiras e bombas. Bomba acertada tira ponto.</small>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="config-bloco">
+            <legend>Tamanho do tabuleiro</legend>
+
+            <!-- A previa de cada tamanho e desenhada em CSS, a partir da variavel n de cada opcao -->
+            <div class="opcoes-tamanho">
+              <label class="opcao">
+                <input type="radio" name="tamanho" value="2">
+                <span class="opcao-conteudo">
+                  <span class="previa" style="--n: 2" aria-hidden="true"></span>
+                  <strong>2 × 2</strong>
+                  <small>4 buracos</small>
+                </span>
+              </label>
+
+              <label class="opcao">
+                <input type="radio" name="tamanho" value="3">
+                <span class="opcao-conteudo">
+                  <span class="previa" style="--n: 3" aria-hidden="true"></span>
+                  <strong>3 × 3</strong>
+                  <small>9 buracos</small>
+                </span>
+              </label>
+
+              <label class="opcao">
+                <input type="radio" name="tamanho" value="4" checked>
+                <span class="opcao-conteudo">
+                  <span class="previa" style="--n: 4" aria-hidden="true"></span>
+                  <strong>4 × 4</strong>
+                  <small>16 buracos</small>
+                </span>
+              </label>
+
+              <label class="opcao">
+                <input type="radio" name="tamanho" value="5">
+                <span class="opcao-conteudo">
+                  <span class="previa" style="--n: 5" aria-hidden="true"></span>
+                  <strong>5 × 5</strong>
+                  <small>25 buracos</small>
+                </span>
+              </label>
+
+              <label class="opcao">
+                <input type="radio" name="tamanho" value="6">
+                <span class="opcao-conteudo">
+                  <span class="previa" style="--n: 6" aria-hidden="true"></span>
+                  <strong>6 × 6</strong>
+                  <small>36 buracos</small>
+                </span>
+              </label>
+
+              <label class="opcao">
+                <input type="radio" name="tamanho" value="7">
+                <span class="opcao-conteudo">
+                  <span class="previa" style="--n: 7" aria-hidden="true"></span>
+                  <strong>7 × 7</strong>
+                  <small>49 buracos</small>
+                </span>
+              </label>
+
+              <label class="opcao">
+                <input type="radio" name="tamanho" value="8">
+                <span class="opcao-conteudo">
+                  <span class="previa" style="--n: 8" aria-hidden="true"></span>
+                  <strong>8 × 8</strong>
+                  <small>64 buracos</small>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <p id="configuracao-erro" class="form-message" role="alert" hidden></p>
+
+          <p class="config-resumo">
+            Você vai jogar <strong id="resumo-modo">Clássica</strong> num tabuleiro
+            <strong id="resumo-tamanho">4 × 4</strong>.
+          </p>
+
+          <button type="submit" class="btn btn--primary">Começar partida</button>
+        </form>
+
+        <a href="menu.html" class="link-secundario">Voltar ao menu</a>
+      </div>
+    </main>
+
+    <script src="../../public/assets/js/configuracao.js" defer></script>
+  </body>
+</html>
