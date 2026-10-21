@@ -114,7 +114,7 @@
   font-size: 12px;
 }
 
-/* Tabuleiro, futuramente alterar a definição da tabela no js, data-colunas define o tamanho da colunas */
+/* Tabuleiro */
 
 .tabuleiro-wrap {
   margin-bottom: 20px;
@@ -127,6 +127,15 @@
   border: 4px solid var(--terra-borda);
   border-radius: var(--raio-card);
   background: var(--terra-ui);
+}
+
+/* Cursor personalizado para o tabuleiro e seus elementos filhos */
+.tabuleiro, .tabuleiro * {
+  cursor: url(../img/cursor.png) 12 10, auto;
+}
+
+.tabuleiro:active, .tabuleiro *:active {
+  cursor: url(../img/cursor-pressionado.png) 12 10, auto;
 }
 
 .tabuleiro[data-colunas="1"] {
@@ -171,7 +180,6 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  cursor: pointer;
   image-rendering: pixelated;
   transition: transform 0.08s ease;
 }
