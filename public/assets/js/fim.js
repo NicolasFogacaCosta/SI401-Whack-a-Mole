@@ -6,7 +6,7 @@
     return;
   }
 
-  const modalidade = resultado.modo === "explosivo" ? "Explosiva" : "Classica";
+  const modalidade = resultado.modo === "explosivo" ? "Explosiva" : "Clássica";
   document.querySelector("#fim-mensagem").textContent = resultado.motivo;
   document.querySelector("#fim-modalidade").textContent = modalidade;
   document.querySelector("#fim-tabuleiro").textContent = resultado.linhas + " x " + resultado.colunas + " (" + resultado.linhas * resultado.colunas + " buracos)";

@@ -3,12 +3,12 @@ Desenvolvimento do projeto semestral da disciplina de Programação Web I
 
 Telas
 
-Tela login (Já feita, falta configurar o forms com o java e banco)
+Tela login (Já feita, falta configurar o forms com o PHP e banco)
 Forms usuário e senha
 Botão enviar dados fornecidos
 Link para página de cadastro no sistema
 
-Tela cadastro (Já feita, falta configurar o forms com o java e banco)
+Tela cadastro (Já feita, falta configurar o forms com o PHP e banco)
 Forms nome completo, data de nascimento, CPF, telefone, e-mail, username, senha
 
 Tela menu inicial (Feito)

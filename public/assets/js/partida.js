@@ -6,25 +6,41 @@
   const INTERVALO_APARECIMENTO = 700;
   const TEMPO_VISIVEL_INICIAL = 1200;
   const REDUCAO_POR_NIVEL = 100;
+  const PONTOS_TOUPEIRA = 100;
+
+  /* Medidas do tabuleiro: folga entre buracos, espessura da borda
+     e teto do lado do buraco, para um tabuleiro 2x2 nao virar
+     duas crateras ocupando a tela inteira. */
+  const FOLGA = 8;
+  const BORDA = 3;
+  const LADO_MAXIMO = 150;
+
+  /* O tabuleiro e sempre quadrado, em um dos tamanhos oferecidos
+     na tela de nova partida */
+  const TAMANHOS_VALIDOS = [2, 3, 4, 5, 6, 7, 8];
 
   const params = new URLSearchParams(window.location.search);
   const linhas = Number(params.get("linhas"));
   const colunas = Number(params.get("colunas"));
   const modo = params.get("modo");
 
-  if (!Number.isInteger(linhas) || !Number.isInteger(colunas) || linhas * colunas < 4 || linhas * colunas > 64 || !["classico", "explosivo"].includes(modo)) {
+  if (linhas !== colunas || !TAMANHOS_VALIDOS.includes(linhas) || !["classico", "explosivo"].includes(modo)) {
     window.location.replace("jogo.html");
     return;
   }
 
   const tabuleiro = document.querySelector("#tabuleiro");
+  const tabuleiroArea = document.querySelector(".tabuleiro-wrap");
   const hudModalidade = document.querySelector("#hud-modalidade");
   const hudTempo = document.querySelector("#hud-tempo");
   const hudNivel = document.querySelector("#hud-nivel");
   const hudAcertos = document.querySelector("#hud-acertos");
+  const hudPontuacao = document.querySelector("#hud-pontuacao");
   const hudPercentual = document.querySelector("#hud-percentual");
   const hudBarra = document.querySelector("#hud-barra");
+  const hudMeta = document.querySelector("#hud-meta");
   const hudDimensoes = document.querySelector("#hud-dimensoes");
+  const barraMarca = document.querySelector("#barra-marca");
   const mensagem = document.querySelector("#mensagem-jogo");
   const desistir = document.querySelector("#desistir");
 
@@ -40,10 +56,10 @@
     temporizadores: []
   };
 
-  hudModalidade.textContent = modo === "explosivo" ? "Explosiva" : "Classica";
+  hudModalidade.textContent = modo === "explosivo" ? "Explosiva" : "Clássica";
   hudDimensoes.textContent = linhas + " x " + colunas + " (" + linhas * colunas + " buracos)";
-  tabuleiro.dataset.colunas = String(colunas);
-  tabuleiro.style.gridTemplateColumns = "repeat(" + colunas + ", minmax(0, 1fr))";
+  hudMeta.textContent = META_ACERTOS + "%";
+  barraMarca.style.left = META_ACERTOS + "%";
 
   for (let indice = 0; indice < linhas * colunas; indice += 1) {
     const buraco = document.createElement("button");
@@ -58,12 +74,40 @@
     buracos.push(buraco);
   }
 
-  window.requestAnimationFrame(function () {
-    tabuleiro.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  });
+  /* Maior lado de buraco que cabe na area livre com essa folga */
+  function ladoQueCabe(folga) {
+    const area = tabuleiroArea.getBoundingClientRect();
+    const larguraUtil = area.width - 2 * folga - 2 * BORDA - folga * (colunas - 1);
+    const alturaUtil = area.height - 2 * folga - 2 * BORDA - folga * (linhas - 1);
+
+    return Math.max(1, Math.floor(Math.min(larguraUtil / colunas, alturaUtil / linhas, LADO_MAXIMO)));
+  }
+
+  /* Buraco pequeno pede folga menor, senao o espaco vai todo para o vao */
+  function folgaPara(lado) {
+    return lado >= 48 ? FOLGA : lado >= 24 ? 4 : 2;
+  }
+
+  /* Mede a area livre deixada pelo layout e calcula o lado do buraco,
+     para o tabuleiro inteiro caber na tela de 4 ate 64 posicoes.
+     Duas passadas: a primeira estima o lado, a segunda refaz a conta
+     ja com a folga correspondente aquele tamanho de buraco. */
+  function dimensionarTabuleiro() {
+    let folga = FOLGA;
+    let lado = ladoQueCabe(folga);
+
+    for (let passada = 0; passada < 2; passada += 1) {
+      folga = folgaPara(lado);
+      lado = ladoQueCabe(folga);
+    }
+
+    tabuleiro.style.setProperty("--colunas", String(colunas));
+    tabuleiro.style.setProperty("--lado", lado + "px");
+    tabuleiro.style.setProperty("--folga", folga + "px");
+  }
+
+  dimensionarTabuleiro();
+  window.addEventListener("resize", dimensionarTabuleiro);
 
   function registrarTemporizador(funcao, atraso) {
     const id = window.setTimeout(funcao, atraso);
@@ -76,6 +120,16 @@
     estado.temporizadores = [];
   }
 
+  /* Devolve todos os buracos ao estado vazio. Como a troca de nivel
+     cancela os temporizadores pendentes, sem isso um buraco poderia
+     ficar preso em "acerto" e sair do sorteio pelo resto da partida. */
+  function limparBuracos() {
+    buracos.forEach(function (buraco, indice) {
+      buraco.dataset.estado = "vazio";
+      buraco.setAttribute("aria-label", "Buraco " + (indice + 1) + ", vazio");
+    });
+  }
+
   function atualizarHud() {
     const percentual = estado.exibidosNoNivel === 0
       ? 0
@@ -85,6 +139,7 @@
     hudTempo.dateTime = "PT" + estado.tempoRestante + "S";
     hudNivel.textContent = String(estado.nivel);
     hudAcertos.textContent = String(estado.toupeirasAcertadas);
+    hudPontuacao.textContent = estado.pontuacao.toLocaleString("pt-BR");
     hudPercentual.textContent = percentual + "%";
     hudBarra.value = Math.min(100, percentual);
   }
@@ -133,15 +188,15 @@
 
     if (buraco.dataset.estado === "toupeira") {
       estado.toupeirasAcertadas += 1;
-      estado.pontuacao += 100;
+      estado.pontuacao += PONTOS_TOUPEIRA;
       estado.pontosNoNivel += 1;
       buraco.dataset.estado = "acerto";
       mensagem.textContent = "Boa! Toupeira acertada.";
     } else {
-      estado.pontuacao -= 100;
+      estado.pontuacao -= PONTOS_TOUPEIRA;
       estado.pontosNoNivel -= 1;
       buraco.dataset.estado = "explosao";
-      mensagem.textContent = "Cuidado! Voce acertou uma bomba.";
+      mensagem.textContent = "Cuidado! Você acertou uma bomba.";
     }
 
     buraco.setAttribute("aria-label", "Buraco vazio");
@@ -155,7 +210,8 @@
     estado.tempoRestante = NIVEL_DURACAO;
     estado.exibidosNoNivel = 0;
     estado.pontosNoNivel = 0;
-    mensagem.textContent = "Nivel " + estado.nivel + " iniciado.";
+    limparBuracos();
+    mensagem.textContent = "Nível " + estado.nivel + " iniciado.";
     atualizarHud();
     exibirAlvo();
     contarTempo();
@@ -188,7 +244,7 @@
       limparTemporizadores();
       iniciarNivel();
     } else {
-      finalizarPartida("Voce nao atingiu a meta de " + META_ACERTOS + "% no nivel.");
+      finalizarPartida("Você não atingiu a meta de " + META_ACERTOS + "% no nível.");
     }
   }
 
