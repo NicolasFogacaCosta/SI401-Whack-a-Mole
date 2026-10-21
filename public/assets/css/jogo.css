@@ -1,86 +1,153 @@
 /* Ajustes exclusivos da selecao de partida */
 
+/* Cabecalho menor que o das outras telas, para a escolha inteira
+   caber sem rolagem ate em notebook de tela baixa */
+
+.tela-jogo {
+  padding: 18px 16px;
+}
+
+.tela-jogo .login-screen {
+  margin-bottom: 18px;
+}
+
+.tela-jogo .login-screen-art {
+  width: 92px;
+  height: 92px;
+}
+
+.tela-jogo .login-screen-title h1 {
+  margin-top: 12px;
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+}
+
 .game-config-card {
-  max-width: 520px;
+  max-width: 680px;
 }
 
-.config-intro {
-  margin: 0 0 22px;
-  color: var(--terra-borda);
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.config-fieldset {
-  margin: 0 0 20px;
-  padding: 16px;
+.config-bloco {
+  margin: 0 0 18px;
+  padding: 14px;
   border: 2px solid var(--creme-texto2);
   border-radius: var(--raio-campo);
   text-align: left;
 }
 
-.config-fieldset legend {
+.config-bloco legend {
   padding: 0 8px;
   color: var(--terra-borda);
   font-family: var(--fonte-titulo);
   font-weight: 600;
 }
 
-.config-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+/* ============================================================
+   Opcoes
+   O radio fica escondido mas continua recebendo foco e teclado,
+   quem muda de aparencia e o .opcao-conteudo logo depois dele.
+   ============================================================ */
+
+.opcao {
+  display: block;
+  cursor: pointer;
 }
 
-.config-grid .field {
-  margin-bottom: 0;
+.opcao input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
 }
 
-.config-help {
-  margin: 12px 0 0;
-  color: var(--terra-borda);
-  font-size: 12px;
-}
-
-.mode-options {
-  display: grid;
-  gap: 10px;
-}
-
-.mode-option {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 12px;
+.opcao-conteudo {
+  display: block;
+  height: 100%;
+  padding: 10px 12px;
   border: 2px solid var(--creme-texto2);
   border-radius: var(--raio-campo);
   background: #fff;
   color: var(--terra-fundo);
-  cursor: pointer;
 }
 
-.mode-option:has(input:checked) {
+.opcao input:checked + .opcao-conteudo {
   border-color: var(--grama-acao);
-  background: #f3fbef;
+  background: #f2fbec;
 }
 
-.mode-option input {
-  margin-top: 3px;
-  accent-color: var(--grama-acao);
+.opcao input:focus-visible + .opcao-conteudo {
+  outline: 3px solid var(--sol-pontuacao);
+  outline-offset: 2px;
 }
 
-.mode-option span {
-  display: grid;
-  gap: 3px;
-}
-
-.mode-option strong {
+.opcao-conteudo strong {
+  display: block;
   font-family: var(--fonte-titulo);
+  font-weight: 600;
 }
 
-.mode-option small {
+.opcao-conteudo small {
+  display: block;
   color: var(--terra-borda);
   font-size: 12px;
+}
+
+/* Modalidade: dois cartoes lado a lado */
+
+.opcoes-modo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+/* Tamanho: os sete tabuleiros quadrados disponiveis, lado a lado
+   para o jogador comparar os formatos de uma olhada so */
+
+.opcoes-tamanho {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.opcoes-tamanho .opcao-conteudo {
+  padding: 8px;
+  text-align: center;
+}
+
+.opcoes-tamanho strong {
+  font-size: 15px;
+}
+
+.opcoes-tamanho small {
+  font-size: 11px;
+}
+
+/* Previa do tabuleiro: um ponto por buraco, desenhados pelo
+   proprio fundo a partir do --n da opcao, sem markup extra */
+.previa {
+  display: block;
+  width: 100%;
+  max-width: 46px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto 6px;
+  border-radius: 6px;
+  background-color: var(--terra-ui);
+  background-image: radial-gradient(circle, var(--creme-texto2) 26%, transparent 28%);
+  background-size: calc(100% / var(--n)) calc(100% / var(--n));
+}
+
+.opcao input:checked + .opcao-conteudo .previa {
+  background-image: radial-gradient(circle, var(--sol-pontuacao) 26%, transparent 28%);
+}
+
+/* Resumo da escolha, atualizado pelo configuracao.js */
+
+.config-resumo {
+  margin: 0 0 16px;
+  color: var(--terra-borda);
+  font-size: 13px;
+}
+
+.config-resumo strong {
+  color: var(--terra-fundo);
 }
 
 .form-message {
@@ -95,8 +162,69 @@
   text-align: left;
 }
 
-@media (max-width: 420px) {
-  .config-grid {
+@media (max-width: 620px) {
+  .opcoes-tamanho {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 460px) {
+  .opcoes-modo {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Telas baixas: versao enxuta, para a escolha inteira caber sem
+   rolagem em notebook de 1366x590 */
+
+@media (max-height: 680px) {
+  .tela-jogo {
+    padding: 12px 16px;
+  }
+
+  .tela-jogo .login-screen {
+    margin-bottom: 10px;
+  }
+
+  .tela-jogo .login-screen-art {
+    width: 60px;
+    height: 60px;
+    border-width: 3px;
+  }
+
+  .tela-jogo .login-screen-title h1 {
+    margin-top: 8px;
+    font-size: 1.5rem;
+    text-shadow: 0 3px 0 var(--terra-borda);
+  }
+
+  .tela-jogo .forms-card {
+    padding: 16px 18px 14px;
+  }
+
+  .config-bloco {
+    margin-bottom: 12px;
+    padding: 10px 12px;
+  }
+
+  .opcao-conteudo {
+    padding: 8px 10px;
+  }
+
+  .opcoes-tamanho .opcao-conteudo {
+    padding: 6px;
+  }
+
+  .previa {
+    max-width: 38px;
+    margin-bottom: 4px;
+  }
+
+  .config-resumo {
+    margin-bottom: 10px;
+  }
+
+  .tela-jogo .link-secundario {
+    margin-top: 10px;
   }
 }
