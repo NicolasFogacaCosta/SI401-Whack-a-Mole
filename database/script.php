@@ -11,7 +11,7 @@ try{
     telefone char(15) not null,
     email varchar(150) not null unique,
     usuario varchar(50) not null unique,
-    senha varchar(250) not null,
+    senha_hash varchar(250) not null,
     criado_em datetime not null default current_timestamp
     )";
 
