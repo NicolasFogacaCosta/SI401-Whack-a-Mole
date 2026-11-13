@@ -14,7 +14,7 @@ try{
         PDO::ATTR_ERRMODE,
         PDO::ERRMODE_EXCEPTION
     );
-    echo 'Conectado ao Banco Whack-A-Mole';
 }catch(PDOException $erro){
+    throw $erro;
     echo 'Connection failed: '. $erro ->getMessage();
 }
