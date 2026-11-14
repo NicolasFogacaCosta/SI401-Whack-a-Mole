@@ -22,40 +22,83 @@
 
     <main class="forms">
       <div class="forms-card cadastro-card">
-        <form id="cadastro-form" novalidate>
+        <form 
+        id="cadastro-form" 
+        action="../actions/cadastro.php" 
+        method="post"
+        >
           <div class="field">
             <label for="full_name">Nome Completo</label>
-            <input id="full_name" type="text" required>
+            <input 
+            id="full_name" 
+            name="nome_completo"
+            type="text" 
+            required
+            >
           </div>
 
           <div class="field">
             <label for="birthday">Data de Nascimento</label>
-            <input id="birthday" type="date" required>
+            <input 
+            id="birthday" 
+            name="data_nascimento"
+            type="date" 
+            required
+            >
           </div>
 
           <div class="field">
             <label for="cpf">CPF</label>
-            <input id="cpf" type="text" maxlength="14" placeholder="000.000.000-00" required>
+            <input 
+            id="cpf" 
+            name="cpf"
+            type="text" 
+            maxlength="14" 
+            placeholder="000.000.000-00" 
+            required
+            >
           </div>
 
           <div class="field">
             <label for="phone">Telefone</label>
-            <input id="phone" type="text" maxlength="15" placeholder="(00) 00000-0000" required>
+            <input 
+            id="phone" 
+            name="telefone"
+            type="text" 
+            maxlength="15" 
+            placeholder="(00) 00000-0000" 
+            required
+            >
           </div>
 
           <div class="field">
             <label for="email">E-mail</label>
-            <input id="email" type="email" required>
+            <input 
+            id="email" 
+            name="email"
+            type="email" 
+            required
+            >
           </div>
 
           <div class="field">
             <label for="user">Usuário</label>
-            <input id="user" type="text" required>
+            <input 
+            id="user" 
+            name="usuario"
+            type="text" 
+            required
+            >
           </div>
 
           <div class="field">
             <label for="password">Senha</label>
-            <input id="password" type="password" required>
+            <input 
+            id="password" 
+            name="senha"
+            type="password" 
+            required
+            >
           </div>
 
           <p id="form-error" role="alert" hidden></p>
