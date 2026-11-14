@@ -40,8 +40,10 @@ $stmt->execute([
     ':telefone' => $telefone,
     ':email' => $email,
     ':usuario' => $usuario,
-    'senha_hash' => $senha_hash
+    ':senha_hash' => $senha_hash
 ]);
 
 echo 'Cadastro realizado com sucesso!';
+header('Location: ../../public/index.html');
+exit;
 
