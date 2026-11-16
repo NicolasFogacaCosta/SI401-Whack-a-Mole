@@ -143,13 +143,13 @@ require __DIR__ . '/../view/menu.php';
 
 **Controllers que ainda não existem** (as telas hoje navegam de view para view, sem passar por controller):
 
-- [ ] `controller/menu.php`
-- [ ] `controller/jogo.php`
-- [ ] `controller/partida.php`
-- [ ] `controller/fim.php`
-- [ ] `controller/historico.php`
-- [ ] `controller/ranking.php`
-- [ ] `controller/edicao.php`
+- [x] `controller/menu.php`
+- [x] `controller/jogo.php`
+- [x] `controller/partida.php`
+- [x] `controller/fim.php`
+- [x] `controller/historico.php`
+- [x] `controller/ranking.php`
+- [x] `controller/edicao.php`
 
 **Telas que ainda usam dados fixos e precisam vir do banco:**
 
@@ -167,7 +167,7 @@ require __DIR__ . '/../view/menu.php';
 
 **Organização e configuração:**
 
-- [ ] Centralizar as credenciais do banco: `database/script.php` ainda tem a própria conexão, separada de `app/config/database.php`.
+- [x] Centralizar as credenciais do banco: `database/script.php` ainda tem a própria conexão, separada de `app/config/database.php`.
 - [ ] Remover o `echo` que vem depois do `throw` em `database.php` (código que nunca executa).
 - [ ] Reavaliar a proteção da pasta `app/` (hoje acessível pelo navegador, como no restante do projeto). Aceitável para fins acadêmicos, mas não para produção.
 
