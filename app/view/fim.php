@@ -57,14 +57,14 @@
         </dl>
 
         <div class="field">
-          <a href="jogo.html" class="btn btn--primary">Iniciar nova partida</a>
+          <a href="jogo.php" class="btn btn--primary">Iniciar nova partida</a>
         </div>
 
         <div class="field">
-          <a href="menu.html" class="btn btn--secondary">Voltar ao menu</a>
+          <a href="menu.php" class="btn btn--secondary">Voltar ao menu</a>
         </div>
 
-        <a href="historico.html" class="link-secundario">Ver meu histórico</a>
+        <a href="historico.php" class="link-secundario">Ver meu histórico</a>
       </div>
     </main>
     <script src="../../public/assets/js/fim.js" defer></script>

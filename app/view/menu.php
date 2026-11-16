@@ -23,19 +23,19 @@
     <main class="forms">
       <div class="forms-card menu-card">
         <div class="field">
-          <a href="jogo.html" class="btn btn--primary">Iniciar Jogo</a>
+          <a href="jogo.php" class="btn btn--primary">Iniciar Jogo</a>
         </div>
 
         <div class="field">
-          <a href="historico.html" class="btn btn--secondary">Histórico</a>
+          <a href="historico.php" class="btn btn--secondary">Histórico</a>
         </div>
 
         <div class="field">
-          <a href="ranking.html" class="btn btn--secondary">Ranking Global</a>
+          <a href="ranking.php" class="btn btn--secondary">Ranking Global</a>
         </div>
 
         <div class="field">
-          <a href="../../public/index.html" class="btn btn--tertiary">Desconectar</a>
+          <a href="../controller/logout.php" class="btn btn--tertiary">Desconectar</a>
         </div>
       </div>
     </main>

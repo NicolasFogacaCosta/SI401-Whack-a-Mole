@@ -64,7 +64,7 @@
           <button type="submit" class="btn btn--primary">Alterar</button>
         </form>
 
-        <a href="ranking.html" class="link-secundario">Voltar ao Ranking</a>
+        <a href="ranking.php" class="link-secundario">Voltar ao Ranking</a>
       </div>
     </main>
   </body>
