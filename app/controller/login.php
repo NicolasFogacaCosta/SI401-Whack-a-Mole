@@ -22,7 +22,7 @@
             $_SESSION['usuario'] = $usuarioEncontrado['usuario'];
         }
 
-        header('Location: ../view/menu.php');
+        header('Location: menu.php');
         exit;
     }
     else {
