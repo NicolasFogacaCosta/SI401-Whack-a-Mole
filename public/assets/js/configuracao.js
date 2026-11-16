@@ -53,7 +53,7 @@
       modo: escolha.modo
     });
 
-    window.location.href = "partida.html?" + params.toString();
+    window.location.href = "partida.php?" + params.toString();
   });
 
   atualizarResumo();

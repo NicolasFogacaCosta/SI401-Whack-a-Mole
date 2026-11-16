@@ -22,7 +22,7 @@
 
     <main class="forms">
       <div class="forms-card game-config-card">
-        <form id="configuracao-form" action="partida.html" method="get">
+        <form id="configuracao-form" action="partida.php" method="GET">
           <fieldset class="config-bloco">
             <legend>Modalidade</legend>
 
@@ -125,7 +125,7 @@
           <button type="submit" class="btn btn--primary">Começar partida</button>
         </form>
 
-        <a href="menu.html" class="link-secundario">Voltar ao menu</a>
+        <a href="menu.php" class="link-secundario">Voltar ao menu</a>
       </div>
     </main>
 

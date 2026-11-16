@@ -24,8 +24,8 @@
       <div class="forms-card cadastro-card">
         <form 
         id="cadastro-form" 
-        action="../actions/cadastro.php" 
-        method="post"
+        action="../controller/cadastro.php" 
+        method="POST"
         >
           <div class="field">
             <label for="full_name">Nome Completo</label>
@@ -107,7 +107,7 @@
           <button type="submit" class="btn btn--primary">Criar conta</button>
         </form>
 
-        <a href="../../public/index.html" class="link-secundario">Voltar ao Login</a>
+        <a href="../../public/index.php" class="link-secundario">Voltar ao Login</a>
       </div>
     </main>
   </body>

@@ -104,7 +104,7 @@
           </table>
         </div>
 
-        <a href="menu.html" class="link-secundario">Voltar ao Menu</a>
+        <a href="menu.php" class="link-secundario">Voltar ao Menu</a>
       </div>
     </main>
   </body>

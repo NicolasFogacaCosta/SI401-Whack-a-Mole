@@ -25,7 +25,7 @@
   const modo = params.get("modo");
 
   if (linhas !== colunas || !TAMANHOS_VALIDOS.includes(linhas) || !["classico", "explosivo"].includes(modo)) {
-    window.location.replace("jogo.html");
+    window.location.replace("jogo.php");
     return;
   }
 
@@ -264,7 +264,7 @@
       pontuacao: estado.pontuacao,
       motivo
     }));
-    window.location.href = "fim.html";
+    window.location.href = "fim.php";
   }
 
   desistir.addEventListener("click", function () {

@@ -89,10 +89,10 @@
         </table>
 
         <div class="field">
-          <a href="edicao.html" class="btn btn--primary">Edite seu Cadastro</a>
+          <a href="edicao.php" class="btn btn--primary">Edite seu Cadastro</a>
         </div>
 
-        <a href="menu.html" class="link-secundario">Voltar ao Menu</a>
+        <a href="menu.php" class="link-secundario">Voltar ao Menu</a>
       </div>
     </main>
   </body>
