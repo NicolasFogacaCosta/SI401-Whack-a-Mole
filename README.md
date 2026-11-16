@@ -27,8 +27,6 @@ O projeto está sendo refatorado para o padrão **MVC (Model-View-Controller)**,
 | **View** | `app/view/` | Só HTML e `<?= $variavel ?>` para exibir dados. | SQL, regras de negócio |
 | **Controller** | `app/controller/` | Recebe a requisição (`$_POST`, `$_GET`, sessão), chama o Model e escolhe a View. É o arquivo que o navegador acessa. | HTML de tela, SQL |
 
-Analogia: o **Controller** é o garçom (recebe o pedido), o **Model** é a cozinha (prepara os dados) e a **View** é o prato servido (o que o usuário vê).
-
 ### Caminho de uma requisição
 
 ```text
@@ -98,7 +96,7 @@ SI401-Whack-a-Mole/
 
 ## 🚀 Como executar (XAMPP)
 
-1. Coloque a pasta do projeto em `htdocs` (no Linux: `/opt/lampp/htdocs/SI401-Whack-a-Mole`).
+1. Coloque a pasta do projeto em `htdocs` (no Linux, por exemplo: `/opt/lampp/htdocs/SI401-Whack-a-Mole`).
 2. Inicie o **Apache** e o **MySQL** pelo painel do XAMPP.
 3. No phpMyAdmin, crie o banco de dados `whack_a_mole` (collation `utf8mb4_general_ci` ou similar).
 4. Acesse `http://localhost/SI401-Whack-a-Mole/database/script.php` uma vez para criar as tabelas (`usuarios` e `partidas`).
