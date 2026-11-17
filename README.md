@@ -58,7 +58,7 @@ SI401-Whack-a-Mole/
 │   │   ├── login.php             # Valida usuário e senha, abre a sessão
 │   │   ├── logout.php            # Destrói a sessão
 │   │   ├── menu.php              # Menu principal
-│   │   ├── jogo.php              # Seleção de modalidade e tabuleiro (+ aviso de desistência)
+│   │   ├── jogo.php              # Seleção de modalidade e tabuleiro
 │   │   ├── partida.php           # Valida a URL e abre o tabuleiro
 │   │   ├── fim.php               # POST: valida e grava a partida / GET: tela de fim
 │   │   ├── historico.php         # Partidas do usuário logado
@@ -162,7 +162,7 @@ require __DIR__ . '/../view/menu.php';
 
 **Telas que ainda usam dados fixos e precisam vir do banco:**
 
-- [x] **Histórico:** partidas do usuário logado, da mais recente para a mais antiga, com marcação de desistência.
+- [x] **Histórico:** partidas do usuário logado, da mais recente para a mais antiga.
 - [x] **Ranking:** melhor partida de cada jogador por pontuação (desempate: mais toupeiras, depois quem fez primeiro), top 10.
 - [x] **Edição de cadastro:** pré-preenchida com os dados reais; só altera nome, telefone, e-mail e senha (opcional).
 - [x] **Salvar partida:** ao fim do jogo, gravar o resultado na tabela `partidas`. Hoje o `partida.js` guarda o resultado só no `sessionStorage`, e o `fim.js` apenas o lê. Isso exige um controller que receba o resultado (por exemplo via `POST`) e uma função no model.
@@ -173,7 +173,6 @@ require __DIR__ . '/../view/menu.php';
 - [x] Exibir os erros da validação PHP em `#form-error` no **cadastro** e na **edição**.
 - [x] Tratar CPF, e-mail ou usuário repetidos no cadastro, com mensagem por campo.
 - [x] Validação no servidor de todos os campos do cadastro (CPF, e-mail, data de nascimento...) e máscaras de CPF/telefone no cliente (`mascaras.js`).
-- [x] Desistência grava a partida (`partida_encerrada = 0`) e volta à seleção de modo com aviso.
 - [x] `session_regenerate_id()` no login e remoção do cookie no logout.
 - [x] Remover do repositório arquivos antigos que sobraram (`*.html` das views, `app/actions/`, se ainda existirem).
 

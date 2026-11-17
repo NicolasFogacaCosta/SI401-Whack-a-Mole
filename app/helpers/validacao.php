@@ -11,18 +11,8 @@
 
     const TAMANHOS_TABULEIRO = [2, 3, 4, 5, 6, 7, 8];
     const MODALIDADES = ['classico', 'explosivo'];
-    const PONTOS_TOUPEIRA = 100;
-
-    /* Teto de alvos por nível: 15 s com um alvo a cada 700 ms dá 22; a folga cobre
-       o atraso natural dos temporizadores do navegador. */
-    const MAX_ALVOS_POR_NIVEL = 25;
-    const MAX_NIVEL = 10000;
-
     const SENHA_MIN = 6;
     const SENHA_MAX = 72; // limite do bcrypt usado por password_hash
-
-    const MOTIVO_DESISTENCIA = 'Partida encerrada pelo jogador.';
-    const MOTIVO_META = 'Você não atingiu a meta de 90% no nível.';
 
     function textoDoCampo(array $entrada, string $campo): string {
         $valor = $entrada[$campo] ?? '';
@@ -229,67 +219,4 @@
         return $linhas === $colunas && in_array($linhas, TAMANHOS_TABULEIRO, true);
     }
 
-    /**
-     * Valida o resultado de partida enviado pelo navegador. O servidor não confia
-     * nesses números: além das faixas, confere se são coerentes entre si.
-     * Retorna ['dados' => linha pronta para salvarPartida(), 'erro' => null]
-     * ou ['dados' => null, 'erro' => motivo da rejeição].
-     */
-    function validarResultadoPartida(array $entrada): array {
-        $inteiros = [
-            'linhas' => [2, 8],
-            'colunas' => [2, 8],
-            'pontuacao' => [0, PHP_INT_MAX],
-            'nivel' => [1, MAX_NIVEL],
-            'toupeiras_acertadas' => [0, PHP_INT_MAX],
-            'desistiu' => [0, 1],
-        ];
-
-        $v = [];
-        foreach ($inteiros as $campo => [$minimo, $maximo]) {
-            $valor = filter_var($entrada[$campo] ?? null, FILTER_VALIDATE_INT, [
-                'options' => ['min_range' => $minimo, 'max_range' => $maximo],
-            ]);
-
-            if ($valor === false) {
-                return ['dados' => null, 'erro' => "Campo '$campo' ausente ou fora da faixa."];
-            }
-            $v[$campo] = $valor;
-        }
-
-        $modalidade = $entrada['modalidade'] ?? null;
-
-        if (!in_array($modalidade, MODALIDADES, true)) {
-            return ['dados' => null, 'erro' => 'Modalidade inválida.'];
-        }
-        if (!tabuleiroValido($v['linhas'], $v['colunas'])) {
-            return ['dados' => null, 'erro' => 'Tabuleiro inválido.'];
-        }
-        if ($v['toupeiras_acertadas'] > $v['nivel'] * MAX_ALVOS_POR_NIVEL) {
-            return ['dados' => null, 'erro' => 'Toupeiras acertadas incompatíveis com o nível.'];
-        }
-        if ($v['pontuacao'] % PONTOS_TOUPEIRA !== 0 || $v['pontuacao'] > $v['toupeiras_acertadas'] * PONTOS_TOUPEIRA) {
-            return ['dados' => null, 'erro' => 'Pontuação incompatível com as toupeiras acertadas.'];
-        }
-        // Sem bombas, a pontuação é exatamente 100 por toupeira
-        if ($modalidade === 'classico' && $v['pontuacao'] !== $v['toupeiras_acertadas'] * PONTOS_TOUPEIRA) {
-            return ['dados' => null, 'erro' => 'Pontuação incompatível com a modalidade clássica.'];
-        }
-
-        return [
-            'dados' => [
-                'linhas' => $v['linhas'],
-                'colunas' => $v['colunas'],
-                'modalidade' => $modalidade,
-                'pontuacao' => $v['pontuacao'],
-                'nivel' => $v['nivel'],
-                'toupeiras_acertadas' => $v['toupeiras_acertadas'],
-                // partida_encerrada = 1: terminou por não bater a meta; 0: desistência
-                'partida_encerrada' => $v['desistiu'] === 1 ? 0 : 1,
-                // o texto é decidido no servidor, nunca vem do cliente
-                'motivo_encerramento' => $v['desistiu'] === 1 ? MOTIVO_DESISTENCIA : MOTIVO_META,
-            ],
-            'erro' => null,
-        ];
-    }
 ?>

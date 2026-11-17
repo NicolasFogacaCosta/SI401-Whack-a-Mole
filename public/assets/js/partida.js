@@ -246,18 +246,17 @@
       limparTemporizadores();
       iniciarNivel();
     } else {
-      finalizarPartida(false);
+      finalizarPartida("Você não atingiu a meta de " + META_ACERTOS + "% no nível.");
     }
   }
 
-  /*Função responsável por finalizar a partida, recebendo como parâmetro se o jogador desistiu.
+  /*Função responsável por finalizar a partida recebendo motivo como parâmetro.
   Se a partida já estiver finalizada, ele apenas da um return para não finalizar
   de forma errada duas vezes. Caso não esteja finalizada, o seu estado finalizado
   muda para true, é limpado os temporizados, e preenchido os campos do formulário
   invisível que está presente em view/partida.php, para que esse formulário passe por
-  um controller php, chegue ao model e seja salvo os dados da partida no banco de dados.
-  O texto do motivo de encerramento é decidido pelo servidor a partir do campo desistiu. */
-  function finalizarPartida(desistiu) {
+  um controller pho, chegue ao model e seja salvo os dados da partida no banco de dados */
+  function finalizarPartida(motivo) {
     if (estado.finalizado) {
       return;
     }
@@ -273,13 +272,13 @@
     document.getElementById("resultado-pontuacao").value = estado.pontuacao;
     document.getElementById("resultado-nivel").value = estado.nivel;
     document.getElementById("resultado-acertos").value = estado.toupeirasAcertadas;
-    document.getElementById("resultado-desistiu").value = desistiu ? "1" : "0";
+    document.getElementById("resultado-motivo").value = motivo;
 
     formulario.submit();
   }
 
   desistir.addEventListener("click", function () {
-    finalizarPartida(true);
+    finalizarPartida("Partida encerrada pelo jogador.");
   });
 
   iniciarNivel();

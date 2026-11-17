@@ -52,9 +52,6 @@
                   <td><?= e($partida['linhas'] . ' x ' . $partida['colunas']) ?></td>
                   <td>
                     <?= e(nomeModalidade($partida['modalidade'])) ?>
-                    <?php if ((int) $partida['partida_encerrada'] === 0): ?>
-                      <small>(desistência)</small>
-                    <?php endif; ?>
                   </td>
                   <td class="col-num"><?= formatarNumero($partida['pontuacao']) ?></td>
                   <td class="col-num"><?= e($partida['nivel']) ?></td>

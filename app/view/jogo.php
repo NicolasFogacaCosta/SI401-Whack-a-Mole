@@ -22,12 +22,6 @@
 
     <main class="forms">
       <div class="forms-card game-config-card">
-        <?php if ($avisoDesistencia): ?>
-          <p id="aviso-desistencia" class="form-sucesso" role="status">
-            Você desistiu da partida. Ela foi registrada no seu histórico.
-          </p>
-        <?php endif; ?>
-
         <form id="configuracao-form" action="partida.php" method="GET">
           <fieldset class="config-bloco">
             <legend>Modalidade</legend>

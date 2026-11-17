@@ -41,7 +41,7 @@
     function listarPartidasDoUsuario($pdo, $usuarioId) {
         $stmt = $pdo->prepare(
             "SELECT p.id, u.usuario, p.linhas, p.colunas, p.modalidade, p.pontuacao, p.nivel,
-                    p.toupeiras_acertadas, p.partida_encerrada, p.jogada_em
+                    p.toupeiras_acertadas, p.jogada_em
             FROM partidas p
             JOIN usuarios u ON u.id = p.usuario_id
             WHERE p.usuario_id = :usuario_id

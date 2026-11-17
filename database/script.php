@@ -4,8 +4,6 @@
      * 
      * Este arquivo cria as tabelas necessárias para o funcionamento do sistema, caso elas ainda não existam.
      * As tabelas criadas são: "usuarios" e "partidas".
-     * Em partidas, partida_encerrada = 1 indica fim normal (meta não atingida) e 0 indica
-     * desistência do jogador.
      * Com o require_once é possível reutilizar o arquivo de conexão de banco e o objeto PDO, evitando repetição
      * de código.
      */
