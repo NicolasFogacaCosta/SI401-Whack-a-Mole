@@ -35,6 +35,7 @@
             nivel int not null,
             toupeiras_acertadas int not null,
             partida_encerrada boolean not null,
+            motivo_encerramento varchar(100) not null,
             jogada_em datetime not null default current_timestamp,
 
             foreign key (usuario_id) references usuarios(id)

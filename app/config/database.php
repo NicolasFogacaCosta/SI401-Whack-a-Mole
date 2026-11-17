@@ -23,6 +23,5 @@
     }
     catch(PDOException $erro){
         throw $erro;
-        echo 'Connection failed: '. $erro ->getMessage();
     }
 ?>

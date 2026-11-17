@@ -156,19 +156,19 @@ require __DIR__ . '/../view/menu.php';
 - [ ] **Histórico:** buscar as partidas do usuário logado (`model/partida.php`) e exibir com `foreach` na view. Hoje a tabela e o nome do jogador estão escritos à mão.
 - [ ] **Ranking:** consulta com o total de toupeiras acertadas por jogador. Hoje os 8 jogadores são fixos.
 - [ ] **Edição de cadastro:** buscar os dados do usuário logado e preencher o formulário; criar a função de atualização no model. Hoje os campos têm valores de exemplo.
-- [ ] **Salvar partida:** ao fim do jogo, gravar o resultado na tabela `partidas`. Hoje o `partida.js` guarda o resultado só no `sessionStorage`, e o `fim.js` apenas o lê. Isso exige um controller que receba o resultado (por exemplo via `POST`) e uma função no model.
+- [x] **Salvar partida:** ao fim do jogo, gravar o resultado na tabela `partidas`. Hoje o `partida.js` guarda o resultado só no `sessionStorage`, e o `fim.js` apenas o lê. Isso exige um controller que receba o resultado (por exemplo via `POST`) e uma função no model.
 
 **Sessão e acabamento:**
 
 - [ ] Proteger as telas que exigem login (verificar `$_SESSION['usuario_id']` no início dos controllers, redirecionando para `public/index.php`). Fazer apenas se o enunciado pedir.
 - [ ] Trocar o `<p id="form-error" ... hidden>` das views de **cadastro** e **edição** pelo bloco condicional `<?php if (!empty($erro)): ?>`, como já feito no login.
 - [ ] Tratar CPF, e-mail ou usuário repetidos no cadastro (hoje uma duplicidade pode causar erro 500).
-- [ ] Remover do repositório arquivos antigos que sobraram (`*.html` das views, `app/actions/`, se ainda existirem).
+- [x] Remover do repositório arquivos antigos que sobraram (`*.html` das views, `app/actions/`, se ainda existirem).
 
 **Organização e configuração:**
 
 - [x] Centralizar as credenciais do banco: `database/script.php` ainda tem a própria conexão, separada de `app/config/database.php`.
-- [ ] Remover o `echo` que vem depois do `throw` em `database.php` (código que nunca executa).
+- [x] Remover o `echo` que vem depois do `throw` em `database.php` (código que nunca executa).
 - [ ] Reavaliar a proteção da pasta `app/` (hoje acessível pelo navegador, como no restante do projeto). Aceitável para fins acadêmicos, mas não para produção.
 
 ---

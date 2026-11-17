@@ -78,6 +78,19 @@
       <div class="tabuleiro" id="tabuleiro" aria-label="Tabuleiro do jogo"></div>
     </main>
 
+  <!-- Formulário invisível que recebe dados sobre a partida de js/partida.js e envia
+   esses dados a um controller php, que será enviado para o model em php para registro
+   da partida no banco de dados-->
+    <form id="form-resultado" action="fim.php" method="POST">
+      <input type="hidden" name="linhas" id="resultado-linhas">
+      <input type="hidden" name="colunas" id="resultado-colunas">
+      <input type="hidden" name="modalidade" id="resultado-modalidade">
+      <input type="hidden" name="pontuacao" id="resultado-pontuacao">
+      <input type="hidden" name="nivel" id="resultado-nivel">
+      <input type="hidden" name="toupeiras_acertadas" id="resultado-acertos">
+      <input type="hidden" name="motivo_encerramento" id="resultado-motivo">
+    </form>
+
     <script src="../../public/assets/js/partida.js" defer></script>
   </body>
 </html>
