@@ -59,13 +59,13 @@ SI401-Whack-a-Mole/
 │   │   ├── menu.php              # (pendente) inclui view/menu.php
 │   │   ├── jogo.php              # (pendente) tela de nova partida
 │   │   ├── partida.php           # (pendente) tela da partida
-│   │   ├── fim.php               # (pendente) fim de partida
+│   │   ├── fim.php               # fim de partida
 │   │   ├── historico.php         # (pendente) histórico do jogador
 │   │   ├── ranking.php           # (pendente) ranking global
 │   │   └── edicao.php            # (pendente) edição de cadastro
 │   ├── model/
 │   │   ├── usuario.php           # cadastrarUsuario(), loginUsuario()
-│   │   └── partida.php           # (pendente) salvar partida, histórico, ranking
+│   │   └── partida.php           # salvar partida, histórico, ranking
 │   └── view/
 │       ├── login.php             # Formulário de login (incluído pelo public/index.php)
 │       ├── cadastro.php
