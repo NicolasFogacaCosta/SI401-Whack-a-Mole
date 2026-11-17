@@ -88,7 +88,8 @@
       <input type="hidden" name="pontuacao" id="resultado-pontuacao">
       <input type="hidden" name="nivel" id="resultado-nivel">
       <input type="hidden" name="toupeiras_acertadas" id="resultado-acertos">
-      <input type="hidden" name="motivo_encerramento" id="resultado-motivo">
+      <!-- 1 = desistência, 0 = meta não atingida. O texto do motivo é definido pelo servidor. -->
+      <input type="hidden" name="desistiu" id="resultado-desistiu">
     </form>
 
     <script src="../../public/assets/js/partida.js" defer></script>

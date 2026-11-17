@@ -22,71 +22,51 @@
 
     <main class="forms">
       <div class="forms-card forms-card--largo ranking-card">
-        <table class="ranking">
-          <caption>
-            Melhores jogadores por total de toupeiras acertadas
-          </caption>
+        <div class="tabela-wrap">
+          <table class="ranking">
+            <caption>
+              Melhor partida de cada jogador, por pontuação (desempate: mais toupeiras, depois quem fez primeiro)
+            </caption>
 
-          <thead>
-            <tr>
-              <th scope="col" class="col-pos">#</th>
-              <th scope="col">Jogador</th>
-              <th scope="col">Modalidade</th>
-              <th scope="col" class="col-acertos">Toupeiras</th>
-            </tr>
-          </thead>
+            <thead>
+              <tr>
+                <th scope="col" class="col-pos">#</th>
+                <th scope="col">Jogador</th>
+                <th scope="col">Modalidade</th>
+                <th scope="col">Tabuleiro</th>
+                <th scope="col" class="col-num">Nível</th>
+                <th scope="col" class="col-acertos">Toupeiras</th>
+                <th scope="col" class="col-num">Pontuação</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            <tr>
-              <td class="col-pos">1</td>
-              <td>ZeDaMarreta</td>
-              <td>Clássico</td>
-              <td class="col-acertos">1.482</td>
-            </tr>
-            <tr>
-              <td class="col-pos">2</td>
-              <td>SenhorDaToca</td>
-              <td>Explosivo</td>
-              <td class="col-acertos">1.317</td>
-            </tr>
-            <tr>
-              <td class="col-pos">3</td>
-              <td>MartelloDoido</td>
-              <td>Clássico</td>
-              <td class="col-acertos">1.205</td>
-            </tr>
-            <tr>
-              <td class="col-pos">4</td>
-              <td>CavaBuraco99</td>
-              <td>Clássico</td>
-              <td class="col-acertos">1.043</td>
-            </tr>
-            <tr>
-              <td class="col-pos">5</td>
-              <td>PataRapida</td>
-              <td>Explosivo</td>
-              <td class="col-acertos">987</td>
-            </tr>
-            <tr>
-              <td class="col-pos">6</td>
-              <td>ToupeiraKiller</td>
-              <td>Explosivo</td>
-              <td class="col-acertos">856</td>
-            </tr>
-            <tr>
-              <td class="col-pos">7</td>
-              <td>MoleHunterBR</td>
-              <td>Clássico</td>
-              <td class="col-acertos">742</td>
-            </tr>
-            <tr>
-              <td class="col-pos">8</td>
-              <td>BombaNao</td>
-              <td>Clássico</td>
-              <td class="col-acertos">698</td>
-            </tr>
-          </tbody>
-        </table>
+            <tbody>
+              <?php if ($ranking === []): ?>
+                <tr class="tabela-vazia">
+                  <td colspan="7">Nenhuma partida registrada ainda. Seja o primeiro!</td>
+                </tr>
+              <?php endif; ?>
+
+              <?php foreach ($ranking as $posicao => $linha): ?>
+                <tr>
+                  <td class="col-pos"><?= $posicao + 1 ?></td>
+                  <td>
+                    <?php if ($linha['usuario'] === $usuarioAtual): ?>
+                      <strong><?= e($linha['usuario']) ?></strong> <small>(você)</small>
+                    <?php else: ?>
+                      <?= e($linha['usuario']) ?>
+                    <?php endif; ?>
+                  </td>
+                  <td><?= e(nomeModalidade($linha['modalidade'])) ?></td>
+                  <td><?= e($linha['linhas'] . ' x ' . $linha['colunas']) ?></td>
+                  <td class="col-num"><?= e($linha['nivel']) ?></td>
+                  <td class="col-acertos"><?= formatarNumero($linha['toupeiras_acertadas']) ?></td>
+                  <td class="col-num"><?= formatarNumero($linha['pontuacao']) ?></td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
 
         <div class="field">
           <a href="edicao.php" class="btn btn--primary">Edite seu Cadastro</a>

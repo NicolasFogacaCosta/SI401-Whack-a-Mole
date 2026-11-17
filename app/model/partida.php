@@ -8,13 +8,13 @@
 
         $stmt->execute([
             ':usuario_id' => $dados['usuario_id'],
-            ':linhas' => $dados['linhas'], 
-            ':colunas' => $dados['colunas'], 
-            ':modalidade' => $dados['modalidade'], 
-            ':pontuacao' => $dados['pontuacao'], 
-            ':nivel' => $dados['nivel'], 
-            ':toupeiras_acertadas' => $dados['toupeiras_acertadas'], 
-            ':partida_encerrada' => $dados['partida_encerrada'], 
+            ':linhas' => $dados['linhas'],
+            ':colunas' => $dados['colunas'],
+            ':modalidade' => $dados['modalidade'],
+            ':pontuacao' => $dados['pontuacao'],
+            ':nivel' => $dados['nivel'],
+            ':toupeiras_acertadas' => $dados['toupeiras_acertadas'],
+            ':partida_encerrada' => $dados['partida_encerrada'],
             ':motivo_encerramento' => $dados['motivo_encerramento']
         ]);
 
@@ -35,5 +35,49 @@
         ]);
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // função do histórico: só as partidas do usuário da sessão, da mais recente para a mais antiga
+    function listarPartidasDoUsuario($pdo, $usuarioId) {
+        $stmt = $pdo->prepare(
+            "SELECT p.id, u.usuario, p.linhas, p.colunas, p.modalidade, p.pontuacao, p.nivel,
+                    p.toupeiras_acertadas, p.partida_encerrada, p.jogada_em
+            FROM partidas p
+            JOIN usuarios u ON u.id = p.usuario_id
+            WHERE p.usuario_id = :usuario_id
+            ORDER BY p.jogada_em DESC, p.id DESC"
+        );
+
+        $stmt->execute([':usuario_id' => $usuarioId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /* função do ranking global: a melhor partida de cada jogador.
+    Critério (SPEC, seção 5): maior pontuação; desempate por mais toupeiras e depois por quem fez primeiro.
+    O ROW_NUMBER() numera as partidas de cada jogador nessa ordem e a de número 1 é a melhor dele.
+    Exige MySQL 8+ ou MariaDB 10.2+. */
+    function listarRanking($pdo, $limite) {
+        $stmt = $pdo->prepare(
+            "SELECT u.usuario, r.linhas, r.colunas, r.modalidade, r.pontuacao,
+                    r.toupeiras_acertadas, r.nivel, r.jogada_em
+            FROM (
+                SELECT p.*,
+                       ROW_NUMBER() OVER (
+                           PARTITION BY p.usuario_id
+                           ORDER BY p.pontuacao DESC, p.toupeiras_acertadas DESC, p.jogada_em ASC, p.id ASC
+                       ) AS ordem_no_jogador
+                FROM partidas p
+            ) r
+            JOIN usuarios u ON u.id = r.usuario_id
+            WHERE r.ordem_no_jogador = 1
+            ORDER BY r.pontuacao DESC, r.toupeiras_acertadas DESC, r.jogada_em ASC, r.id ASC
+            LIMIT :limite"
+        );
+
+        // LIMIT precisa receber um inteiro de verdade, por isso o bindValue com PARAM_INT
+        $stmt->bindValue(':limite', (int) $limite, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 ?>

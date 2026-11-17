@@ -25,7 +25,7 @@
         <div class="tabela-wrap">
           <table class="ranking">
             <caption>
-              Todas as partidas disputadas por ZeDaMarreta
+              Todas as partidas disputadas por <?= e($nomeJogador) ?>
             </caption>
 
             <thead>
@@ -40,66 +40,29 @@
             </thead>
 
             <tbody>
-              <tr>
-                <td>ZeDaMarreta</td>
-                <td>5 x 5</td>
-                <td>Clássico</td>
-                <td class="col-num">4.820</td>
-                <td class="col-num">12</td>
-                <td>
-                  <time datetime="2026-09-13T21:34">13/09/2026 21:34</time>
-                </td>
-              </tr>
-              <tr>
-                <td>ZeDaMarreta</td>
-                <td>4 x 4</td>
-                <td>Explosivo</td>
-                <td class="col-num">3.150</td>
-                <td class="col-num">9</td>
-                <td>
-                  <time datetime="2026-09-12T19:02">12/09/2026 19:02</time>
-                </td>
-              </tr>
-              <tr>
-                <td>ZeDaMarreta</td>
-                <td>3 x 3</td>
-                <td>Clássico</td>
-                <td class="col-num">1.940</td>
-                <td class="col-num">6</td>
-                <td>
-                  <time datetime="2026-09-10T22:15">10/09/2026 22:15</time>
-                </td>
-              </tr>
-              <tr>
-                <td>ZeDaMarreta</td>
-                <td>5 x 5</td>
-                <td>Clássico</td>
-                <td class="col-num">2.780</td>
-                <td class="col-num">8</td>
-                <td>
-                  <time datetime="2026-09-08T18:47">08/09/2026 18:47</time>
-                </td>
-              </tr>
-              <tr>
-                <td>ZeDaMarreta</td>
-                <td>4 x 4</td>
-                <td>Explosivo</td>
-                <td class="col-num">3.605</td>
-                <td class="col-num">10</td>
-                <td>
-                  <time datetime="2026-09-05T20:23">05/09/2026 20:23</time>
-                </td>
-              </tr>
-              <tr>
-                <td>ZeDaMarreta</td>
-                <td>3 x 3</td>
-                <td>Clássico</td>
-                <td class="col-num">1.120</td>
-                <td class="col-num">4</td>
-                <td>
-                  <time datetime="2026-09-02T21:58">02/09/2026 21:58</time>
-                </td>
-              </tr>
+              <?php if ($partidas === []): ?>
+                <tr class="tabela-vazia">
+                  <td colspan="6">Você ainda não jogou nenhuma partida.</td>
+                </tr>
+              <?php endif; ?>
+
+              <?php foreach ($partidas as $partida): ?>
+                <tr>
+                  <td><?= e($partida['usuario']) ?></td>
+                  <td><?= e($partida['linhas'] . ' x ' . $partida['colunas']) ?></td>
+                  <td>
+                    <?= e(nomeModalidade($partida['modalidade'])) ?>
+                    <?php if ((int) $partida['partida_encerrada'] === 0): ?>
+                      <small>(desistência)</small>
+                    <?php endif; ?>
+                  </td>
+                  <td class="col-num"><?= formatarNumero($partida['pontuacao']) ?></td>
+                  <td class="col-num"><?= e($partida['nivel']) ?></td>
+                  <td>
+                    <time datetime="<?= e(dataHoraIso($partida['jogada_em'])) ?>"><?= e(formatarDataHora($partida['jogada_em'])) ?></time>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
             </tbody>
           </table>
         </div>

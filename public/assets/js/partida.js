@@ -193,7 +193,9 @@
       buraco.dataset.estado = "acerto";
       mensagem.textContent = "Boa! Toupeira acertada.";
     } else {
-      estado.pontuacao -= PONTOS_TOUPEIRA;
+      /* A pontuacao nao fica negativa: o servidor rejeita valores
+         negativos e a partida seria perdida */
+      estado.pontuacao = Math.max(0, estado.pontuacao - PONTOS_TOUPEIRA);
       estado.pontosNoNivel -= 1;
       buraco.dataset.estado = "explosao";
       mensagem.textContent = "Cuidado! Você acertou uma bomba.";
@@ -244,17 +246,18 @@
       limparTemporizadores();
       iniciarNivel();
     } else {
-      finalizarPartida("Você não atingiu a meta de " + META_ACERTOS + "% no nível.");
+      finalizarPartida(false);
     }
   }
 
-  /*Função responsável por finalizar a partida recebendo motivo como parâmetro.
+  /*Função responsável por finalizar a partida, recebendo como parâmetro se o jogador desistiu.
   Se a partida já estiver finalizada, ele apenas da um return para não finalizar
   de forma errada duas vezes. Caso não esteja finalizada, o seu estado finalizado
   muda para true, é limpado os temporizados, e preenchido os campos do formulário
   invisível que está presente em view/partida.php, para que esse formulário passe por
-  um controller pho, chegue ao model e seja salvo os dados da partida no banco de dados */
-  function finalizarPartida(motivo) {
+  um controller php, chegue ao model e seja salvo os dados da partida no banco de dados.
+  O texto do motivo de encerramento é decidido pelo servidor a partir do campo desistiu. */
+  function finalizarPartida(desistiu) {
     if (estado.finalizado) {
       return;
     }
@@ -270,13 +273,13 @@
     document.getElementById("resultado-pontuacao").value = estado.pontuacao;
     document.getElementById("resultado-nivel").value = estado.nivel;
     document.getElementById("resultado-acertos").value = estado.toupeirasAcertadas;
-    document.getElementById("resultado-motivo").value = motivo;
+    document.getElementById("resultado-desistiu").value = desistiu ? "1" : "0";
 
     formulario.submit();
   }
 
   desistir.addEventListener("click", function () {
-    finalizarPartida("Partida encerrada pelo jogador.");
+    finalizarPartida(true);
   });
 
   iniciarNivel();
