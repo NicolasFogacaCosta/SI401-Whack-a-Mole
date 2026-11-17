@@ -1,3 +1,16 @@
+<?php
+  /* Formatação do texto que será exibido ao final da partida no campo de modalidade
+  e cálculo do total de buracos que será exibido junto com a quantidade de linhas e colunas */
+  if($partida['modalidade'] === 'classico') {
+    $modalidade = 'Clássica';
+  }
+  else if($partida['modalidade'] === 'explosivo'){
+    $modalidade = 'Explosiva';
+  }
+
+  $total = $partida['linhas'] * $partida['colunas'];
+?>
+
 <!doctype html>
 <html lang="pt-BR">
   <head>
@@ -21,38 +34,52 @@
       </div>
     </header>
 
+    <!-- A utilização de htmlspecialchars evita que possíveis tags HTML no banco de dados cadastradas por engano sejam interpretadas
+    pelo navegador, exibindo-as apenas como texto puro-->
     <main class="forms">
       <div class="forms-card fim-card">
         <h2 class="sr-apenas">Resumo da partida encerrada</h2>
 
         <p class="fim-intro">
-          <span id="fim-mensagem">A partida foi encerrada.</span>
+          <span id="fim-mensagem">
+            <?= htmlspecialchars($partida['motivo_encerramento'], ENT_QUOTES, 'UTF-8') ?>
+          </span>
         </p>
 
         <dl class="resumo">
           <div class="resumo-linha">
             <dt>Modalidade</dt>
-            <dd id="fim-modalidade">Explosiva</dd>
+            <dd id="fim-modalidade">
+              <?= htmlspecialchars($modalidade, ENT_QUOTES, 'UTF-8') ?>
+            </dd>
           </div>
 
           <div class="resumo-linha">
             <dt>Tamanho do tabuleiro</dt>
-            <dd id="fim-tabuleiro">4 &times; 4 (16 buracos)</dd>
+            <dd id="fim-tabuleiro">
+              <?= htmlspecialchars($partida['linhas'] . ' X ' . $partida['colunas'] . ' (' . $total . ' buracos)', ENT_QUOTES, 'UTF-8') ?>
+            </dd>
           </div>
 
           <div class="resumo-linha">
             <dt>Toupeiras acertadas</dt>
-            <dd id="fim-acertos">12</dd>
+            <dd id="fim-acertos">
+              <?= htmlspecialchars($partida['toupeiras_acertadas'], ENT_QUOTES, 'UTF-8') ?>
+            </dd>
           </div>
 
           <div class="resumo-linha">
             <dt>Nível atingido</dt>
-            <dd id="fim-nivel">3</dd>
+            <dd id="fim-nivel">
+              <?= htmlspecialchars($partida['nivel'], ENT_QUOTES, 'UTF-8') ?>
+            </dd>
           </div>
 
           <div class="resumo-linha resumo-linha--destaque">
             <dt>Pontuação final</dt>
-            <dd id="fim-pontuacao">3.150</dd>
+            <dd id="fim-pontuacao">
+              <?= number_format((int) $partida['pontuacao'], 0, ',', '.') ?>
+            </dd>
           </div>
         </dl>
 
@@ -67,6 +94,5 @@
         <a href="historico.php" class="link-secundario">Ver meu histórico</a>
       </div>
     </main>
-    <script src="../../public/assets/js/fim.js" defer></script>
   </body>
 </html>

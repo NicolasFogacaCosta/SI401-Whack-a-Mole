@@ -248,6 +248,12 @@
     }
   }
 
+  /*Função responsável por finalizar a partida recebendo motivo como parâmetro.
+  Se a partida já estiver finalizada, ele apenas da um return para não finalizar
+  de forma errada duas vezes. Caso não esteja finalizada, o seu estado finalizado
+  muda para true, é limpado os temporizados, e preenchido os campos do formulário
+  invisível que está presente em view/partida.php, para que esse formulário passe por
+  um controller pho, chegue ao model e seja salvo os dados da partida no banco de dados */
   function finalizarPartida(motivo) {
     if (estado.finalizado) {
       return;
@@ -255,16 +261,18 @@
 
     estado.finalizado = true;
     limparTemporizadores();
-    sessionStorage.setItem("resultadoPartida", JSON.stringify({
-      linhas,
-      colunas,
-      modo,
-      acertos: estado.toupeirasAcertadas,
-      nivel: estado.nivel,
-      pontuacao: estado.pontuacao,
-      motivo
-    }));
-    window.location.href = "fim.php";
+
+    const formulario = document.getElementById("form-resultado");
+
+    document.getElementById("resultado-linhas").value = linhas;
+    document.getElementById("resultado-colunas").value = colunas;
+    document.getElementById("resultado-modalidade").value = modo;
+    document.getElementById("resultado-pontuacao").value = estado.pontuacao;
+    document.getElementById("resultado-nivel").value = estado.nivel;
+    document.getElementById("resultado-acertos").value = estado.toupeirasAcertadas;
+    document.getElementById("resultado-motivo").value = motivo;
+
+    formulario.submit();
   }
 
   desistir.addEventListener("click", function () {
