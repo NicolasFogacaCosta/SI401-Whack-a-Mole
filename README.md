@@ -2,7 +2,12 @@
 
 Jogo web de acertar toupeiras (*Whack-a-Mole*) com cadastro de usuários, login, partidas configuráveis, histórico e ranking. Projeto em grupo desenvolvido para a disciplina **SI401 - Programação para a Web**.
 
-**Autores:** _[nomes e RAs do grupo]_
+**Autores:** 
+- Vinicius Eduardo Machado - 267014
+- Vinícius Pommer Petto - 252160
+- Nícolas Fogaça da Costa - 241143
+- Gabriel Rodrigues Firmino - 219400
+- Cassiano Ladeia Borborema - 257721
 
 ---
 
