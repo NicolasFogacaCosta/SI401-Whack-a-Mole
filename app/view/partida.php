@@ -75,7 +75,7 @@
 
     <!-- O lado do buraco e calculado no partida.js a partir do espaco livre desta area -->
     <main class="tabuleiro-wrap">
-      <div class="tabuleiro" id="tabuleiro" aria-label="Tabuleiro do jogo"></div>
+      <section class="tabuleiro" id="tabuleiro" aria-label="Tabuleiro do jogo"></section>
     </main>
 
   <!-- Formulário invisível que recebe dados sobre a partida de js/partida.js e envia
