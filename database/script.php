@@ -8,9 +8,21 @@
      * de código.
      */
     
-    require_once __DIR__ . '/../app/config/database.php';
+    $host = '127.0.0.1';
+    $username = 'root';
+    $password = '';
+
+    $dsn = "mysql:host=$host;charset=utf8mb4";
 
     try{
+        $pdo = new PDO($dsn, $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sqlDatabase = "CREATE DATABASE IF NOT EXISTS `whack_a_mole` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci";
+        $pdo->exec($sqlDatabase);
+
+        $pdo->exec("USE `whack_a_mole`");
+        
         $sqlUsuarios = "CREATE TABLE IF NOT EXISTS usuarios(
             id int unsigned auto_increment primary key,
             nome_completo varchar(150) not null,
