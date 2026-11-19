@@ -52,10 +52,7 @@
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    /* função do ranking global: a melhor partida de cada jogador.
-    Critério (SPEC, seção 5): maior pontuação; desempate por mais toupeiras e depois por quem fez primeiro.
-    O ROW_NUMBER() numera as partidas de cada jogador nessa ordem e a de número 1 é a melhor dele.
-    Exige MySQL 8+ ou MariaDB 10.2+. */
+    // função do ranking global: a melhor partida de cada jogador.
     function listarRanking($pdo, $limite) {
         $stmt = $pdo->prepare(
             "SELECT u.usuario, r.linhas, r.colunas, r.modalidade, r.pontuacao,
