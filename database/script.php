@@ -30,7 +30,7 @@
             usuario_id int unsigned not null,
             linhas int not null,
             colunas int not null,
-            modalidade char(10) not null,
+            modalidade enum('classico', 'explosivo') not null,
             pontuacao int not null,
             nivel int not null,
             toupeiras_acertadas int not null,

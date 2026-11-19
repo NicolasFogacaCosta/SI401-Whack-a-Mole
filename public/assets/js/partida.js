@@ -193,7 +193,9 @@
       buraco.dataset.estado = "acerto";
       mensagem.textContent = "Boa! Toupeira acertada.";
     } else {
-      estado.pontuacao -= PONTOS_TOUPEIRA;
+      /* A pontuacao nao fica negativa: o servidor rejeita valores
+         negativos e a partida seria perdida */
+      estado.pontuacao = Math.max(0, estado.pontuacao - PONTOS_TOUPEIRA);
       estado.pontosNoNivel -= 1;
       buraco.dataset.estado = "explosao";
       mensagem.textContent = "Cuidado! Você acertou uma bomba.";

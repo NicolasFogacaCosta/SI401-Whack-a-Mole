@@ -51,21 +51,25 @@ A View nunca é acessada diretamente: ela é sempre incluída por um controller 
 SI401-Whack-a-Mole/
 ├── app/
 │   ├── config/
-│   │   └── database.php          # Conexão PDO com o MySQL
+│   │   ├── database.php          # Conexão PDO com o MySQL
+│   │   └── sessao.php            # session_start() + exigirLogin() das páginas restritas
 │   ├── controller/
 │   │   ├── cadastro.php          # Cria conta (GET: formulário / POST: grava)
 │   │   ├── login.php             # Valida usuário e senha, abre a sessão
 │   │   ├── logout.php            # Destrói a sessão
-│   │   ├── menu.php              # (pendente) inclui view/menu.php
-│   │   ├── jogo.php              # (pendente) tela de nova partida
-│   │   ├── partida.php           # (pendente) tela da partida
-│   │   ├── fim.php               # fim de partida
-│   │   ├── historico.php         # (pendente) histórico do jogador
-│   │   ├── ranking.php           # (pendente) ranking global
-│   │   └── edicao.php            # (pendente) edição de cadastro
+│   │   ├── menu.php              # Menu principal
+│   │   ├── jogo.php              # Seleção de modalidade e tabuleiro
+│   │   ├── partida.php           # Valida a URL e abre o tabuleiro
+│   │   ├── fim.php               # POST: valida e grava a partida / GET: tela de fim
+│   │   ├── historico.php         # Partidas do usuário logado
+│   │   ├── ranking.php           # Top 10 (melhor partida de cada jogador)
+│   │   └── edicao.php            # Edição de nome, telefone, e-mail e senha
+│   ├── helpers/
+│   │   ├── validacao.php         # Regras de validação (CPF, telefone, partida...), sem banco
+│   │   └── formatacao.php        # e() (htmlspecialchars) e formatação para as views
 │   ├── model/
-│   │   ├── usuario.php           # cadastrarUsuario(), loginUsuario()
-│   │   └── partida.php           # salvar partida, histórico, ranking
+│   │   ├── usuario.php           # cadastro, login, busca, duplicidade, atualização
+│   │   └── partida.php           # salvar/buscar partida, histórico, ranking
 │   └── view/
 │       ├── login.php             # Formulário de login (incluído pelo public/index.php)
 │       ├── cadastro.php
@@ -83,7 +87,7 @@ SI401-Whack-a-Mole/
 │   └── assets/
 │       ├── css/                  # style.css (compartilhado) + um CSS por tela
 │       ├── img/                  # Imagens e favicon
-│       └── js/                   # configuracao.js, partida.js, fim.js
+│       └── js/                   # configuracao.js, partida.js, mascaras.js
 └── README.md
 ```
 
@@ -158,23 +162,25 @@ require __DIR__ . '/../view/menu.php';
 
 **Telas que ainda usam dados fixos e precisam vir do banco:**
 
-- [ ] **Histórico:** buscar as partidas do usuário logado (`model/partida.php`) e exibir com `foreach` na view. Hoje a tabela e o nome do jogador estão escritos à mão.
-- [ ] **Ranking:** consulta com o total de toupeiras acertadas por jogador. Hoje os 8 jogadores são fixos.
-- [ ] **Edição de cadastro:** buscar os dados do usuário logado e preencher o formulário; criar a função de atualização no model. Hoje os campos têm valores de exemplo.
+- [x] **Histórico:** partidas do usuário logado, da mais recente para a mais antiga.
+- [x] **Ranking:** melhor partida de cada jogador por pontuação (desempate: mais toupeiras, depois quem fez primeiro), top 10.
+- [x] **Edição de cadastro:** pré-preenchida com os dados reais; só altera nome, telefone, e-mail e senha (opcional).
 - [x] **Salvar partida:** ao fim do jogo, gravar o resultado na tabela `partidas`. Hoje o `partida.js` guarda o resultado só no `sessionStorage`, e o `fim.js` apenas o lê. Isso exige um controller que receba o resultado (por exemplo via `POST`) e uma função no model.
 
 **Sessão e acabamento:**
 
-- [ ] Proteger as telas que exigem login (verificar `$_SESSION['usuario_id']` no início dos controllers, redirecionando para `public/index.php`). Fazer apenas se o enunciado pedir.
-- [ ] Trocar o `<p id="form-error" ... hidden>` das views de **cadastro** e **edição** pelo bloco condicional `<?php if (!empty($erro)): ?>`, como já feito no login.
-- [ ] Tratar CPF, e-mail ou usuário repetidos no cadastro (hoje uma duplicidade pode causar erro 500).
+- [x] Proteger as telas que exigem login (`app/config/sessao.php` → `exigirLogin()` no início dos controllers).
+- [x] Exibir os erros da validação PHP em `#form-error` no **cadastro** e na **edição**.
+- [x] Tratar CPF, e-mail ou usuário repetidos no cadastro, com mensagem por campo.
+- [x] Validação no servidor de todos os campos do cadastro (CPF, e-mail, data de nascimento...) e máscaras de CPF/telefone no cliente (`mascaras.js`).
+- [x] `session_regenerate_id()` no login e remoção do cookie no logout.
 - [x] Remover do repositório arquivos antigos que sobraram (`*.html` das views, `app/actions/`, se ainda existirem).
 
 **Organização e configuração:**
 
 - [x] Centralizar as credenciais do banco: `database/script.php` ainda tem a própria conexão, separada de `app/config/database.php`.
 - [x] Remover o `echo` que vem depois do `throw` em `database.php` (código que nunca executa).
-- [ ] Reavaliar a proteção da pasta `app/` (hoje acessível pelo navegador, como no restante do projeto). Aceitável para fins acadêmicos, mas não para produção.
+- [x] Bloquear o acesso direto pelo navegador a `app/view`, `app/model`, `app/config` e `app/helpers` (`.htaccess` com `Require all denied`; vale no Apache/XAMPP).
 
 ---
 

@@ -1,0 +1,2 @@
+# Pasta interna: o navegador só acessa os controllers (app/controller) e public/.
+Require all denied
